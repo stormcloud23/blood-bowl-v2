@@ -24,7 +24,6 @@ jobs:
           git read-tree FETCH_HEAD
           git checkout-index -a -f
           tar -xf "$RUNNER_TEMP/browser-overlay.tar"
-          rm .github/workflows/import-ffb.yml
           git add -A
           git -c user.name='github-actions[bot]' -c user.email='41898282+github-actions[bot]@users.noreply.github.com' commit -m 'Import pinned FFB source with browser prototype overlay'
           git push origin HEAD:main
