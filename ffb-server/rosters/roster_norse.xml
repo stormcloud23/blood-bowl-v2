@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="norse.lrb6">
+
+	<name>Norse</name>
+	<type>Regular</type>
+	<reRollCost>60000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+
+	<position id="47520">
+		<race>Special</race>
+		<quantity>1</quantity>
+		<name>Josef Bugman</name>
+		<shorthand>JB</shorthand>
+		<type>Infamous Staff</type>
+		<gender>male</gender>
+		<cost>100000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>6</passing>
+		<armour>9</armour>
+		<undead>false</undead>
+		<thrall>false</thrall>
+		<portrait>i/694537</portrait>
+		<iconSet size="1" mimeType="image/png">i/694538.png</iconSet>
+		<skillList>
+			<skill>Bugman's XXXXXX</skill>
+			<skill>Keen Player</skill>
+			<skill value="5">Loner</skill>
+			<skill>Tackle</skill>
+			<skill>Thick Skull</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+		<skillCategoryList/>
+	</position>
+
+	<position id="norse.lineman">
+		<quantity>16</quantity>
+		<name>Lineman</name>
+		<shorthand>L</shorthand>
+		<type>Regular</type>
+		<cost>50000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>7</armour>
+		<portrait>portraits/norse_lineman.png</portrait>
+		<iconSet size="4">iconsets/norse_lineman.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="norse.thrower">
+		<quantity>2</quantity>
+		<name>Thrower</name>
+		<shorthand>T</shorthand>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>3</passing>
+		<armour>7</armour>
+		<portrait>portraits/norse_thrower.png</portrait>
+		<iconSet size="2">iconsets/norse_thrower.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Pass</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Passing</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+    
+	<position id="norse.runner">
+		<quantity>2</quantity>
+		<name>Runner</name>
+		<shorthand>R</shorthand>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/norse_runner.png</portrait>
+		<iconSet size="2">iconsets/norse_runner.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="norse.berserker">
+		<quantity>2</quantity>
+		<name>Berserker</name>
+		<shorthand>B</shorthand>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/norse_berserker.png</portrait>
+		<iconSet size="2">iconsets/norse_berserker.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Frenzy</skill>
+			<skill>Jump Up</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="norse.ulfwerener">
+		<quantity>2</quantity>
+		<name>Ulfwerener</name>
+		<shorthand>U</shorthand>
+		<type>Regular</type>
+		<cost>110000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>2</agility>
+		<passing>0</passing>
+		<armour>8</armour>
+		<portrait>portraits/norse_ulfwerener.png</portrait>
+		<iconSet size="2">iconsets/norse_ulfwerener.png</iconSet>
+		<skillList>
+			<skill>Frenzy</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="norse.troll.snow">
+		<quantity>1</quantity>
+		<name>Snow Troll</name>
+		<shorthand>S</shorthand>
+		<type>Big Guy</type>
+		<cost>140000</cost>
+		<movement>5</movement>
+		<strength>5</strength>
+		<agility>1</agility>
+		<passing>0</passing>
+		<armour>8</armour>
+		<portrait>portraits/norse_snowtroll.png</portrait>
+		<iconSet size="1">iconsets/norse_snowtroll.png</iconSet>
+		<skillList>
+			<skill>Claw</skill>
+			<skill>Claws</skill>
+			<skill>Disturbing Presence</skill>
+			<skill>Frenzy</skill>
+			<skill>Loner</skill>
+			<skill>Wild Animal</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>General</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="norse.Eziasson">
+		<quantity>1</quantity>
+		<name>Boomer Eziasson</name>
+		<shorthand>BE</shorthand>
+		<type>Star</type>
+		<cost>60000</cost>
+		<movement>4</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<armour>9</armour>
+		<portrait>portraits/BoomerEziasson.png</portrait>
+		<iconSet size="1">iconsets/BoomerEziasson.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Accurate</skill>
+			<skill>Block</skill>
+			<skill>Bombardier</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+
+	<position id="norse.Helmut">
+		<quantity>1</quantity>
+		<name>Helmut Wulf</name>
+		<shorthand>HW</shorthand>
+		<type>Star</type>
+		<cost>110000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/HelmutWulf.png</portrait>
+		<iconSet size="1">iconsets/HelmutWulf.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stand Firm</skill>
+		</skillList>
+	</position>
+
+	<position id="norse.Whilhelm">
+		<quantity>1</quantity>
+		<name>Wilhelm Chaney</name>
+		<shorthand>WC</shorthand>
+		<type>Star</type>
+		<cost>240000</cost>
+		<movement>8</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/WilhelmChaney.png</portrait>
+		<iconSet size="1">iconsets/WilhelmChaney.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Catch</skill>
+			<skill>Claws</skill>
+			<skill>Frenzy</skill>
+			<skill>Regeneration</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+	</position>
+
+	<position id="norse.Zara">
+		<quantity>1</quantity>
+		<name>Zara the Slayer</name>
+		<shorthand>ZS</shorthand>
+		<type>Star</type>
+		<cost>270000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/ZaraTheSlayer.png</portrait>
+		<iconSet size="1">iconsets/ZaraTheSlayer.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Dodge</skill>
+			<skill>Jump Up</skill>
+			<skill>Stab</skill>
+			<skill>Stakes</skill>
+		</skillList>
+	</position>
+
+	<position id="norse.Icepelt">
+		<quantity>1</quantity>
+		<name>Icepelt Hammerblow</name>
+		<shorthand>IH</shorthand>
+		<type>Star</type>
+		<cost>330000</cost>
+		<movement>5</movement>
+		<strength>6</strength>
+		<agility>1</agility>
+		<armour>8</armour>
+		<portrait>portraits/IcepeltHammerblow.png</portrait>
+		<iconSet size="1">iconsets/IcepeltHammerblow.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Claws</skill>
+			<skill>Disturbing Presence</skill>
+			<skill>Frenzy</skill>
+			<skill>Regeneration</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+
+	<position id="norse.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+  
+</roster>

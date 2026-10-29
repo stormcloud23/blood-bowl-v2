@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="necromantic.lrb6">
+
+	<name>Necromantic</name>
+	<type>Regular</type>
+	<reRollCost>70000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+	<raisedPositionId>necromantic.zombie</raisedPositionId>
+	<apothecary>false</apothecary>
+	<necromancer>true</necromancer>
+	<undead>true</undead>
+	<nameGenerator>default</nameGenerator>
+
+
+	<position id="necromantic.werewolf">
+		<quantity>2</quantity>
+		<name>Werewolf</name>
+		<type>Regular</type>
+		<cost>120000</cost>
+		<movement>8</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/necromantic_werewolf.png</portrait>
+		<iconSet size="2">iconsets/necromantic_werewolf.png</iconSet>
+		<skillList>
+			<skill>Claw</skill>
+			<skill>Claws</skill>
+			<skill>Frenzy</skill>
+			<skill>Regeneration</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>	
+
+	<position id="necromantic.fleshgolem">
+		<quantity>2</quantity>
+		<name>Flesh Golem</name>
+		<type>Regular</type>
+		<cost>110000</cost>
+		<movement>4</movement>
+		<strength>4</strength>
+		<agility>2</agility>
+		<passing>0</passing>
+		<armour>9</armour>
+		<portrait>portraits/necromantic_fleshgolem.png</portrait>
+		<iconSet size="2">iconsets/necromantic_fleshgolem.png</iconSet>
+		<skillList>
+			<skill>Regeneration</skill>
+			<skill>Stand Firm</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="necromantic.wight">
+		<quantity>2</quantity>
+		<name>Wight</name>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>0</passing>
+		<armour>8</armour>
+		<portrait>portraits/necromantic_wight.png</portrait>
+		<iconSet size="2">iconsets/necromantic_wight.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Regeneration</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="necromantic.ghoul">
+		<quantity>2</quantity>
+		<name>Ghoul</name>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>7</armour>
+		<portrait>portraits/necromantic_ghoul.png</portrait>
+		<iconSet size="2">iconsets/necromantic_ghoul.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="necromantic.zombie">
+		<quantity>16</quantity>
+		<name>Zombie</name>
+		<type>Regular</type>
+		<cost>30000</cost>
+		<movement>4</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<passing>0</passing>
+		<armour>8</armour>
+		<portrait>portraits/necromantic_zombie.png</portrait>
+		<iconSet size="12">iconsets/necromantic_zombie.png</iconSet>
+		<skillList>
+			<skill>Regeneration</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="necromantic.Hackenslash">
+		<quantity>1</quantity>
+		<name>Hack Enslash</name>
+		<shorthand>HE</shorthand>
+		<type>Star</type>
+		<cost>120000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<armour>7</armour>
+		<portrait>portraits/HackEnslash.png</portrait>
+		<iconSet size="1">iconsets/HackEnslash.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Chainsaw</skill>
+			<skill>Regeneration</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Side Step</skill>
+		</skillList>
+	</position>
+
+	<position id="necromantic.Earlice">
+		<quantity>1</quantity>
+		<name>J. Earlice</name>
+		<shorthand>JE</shorthand>
+		<type>Star</type>
+		<cost>180000</cost>
+		<movement>8</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/JEarlice.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Catch</skill>
+			<skill>Diving Catch</skill>
+			<skill>Dodge</skill>
+			<skill>Sprint</skill>
+		</skillList>
+	</position>
+
+	<position id="necromantic.Setekh">
+		<quantity>1</quantity>
+		<name>Setekh</name>
+		<shorthand>ST</shorthand>
+		<type>Star</type>
+		<cost>220000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>2</agility>
+		<armour>8</armour>
+		<portrait>portraits/Setekh.png</portrait>
+		<iconSet size="1">iconsets/Setekh.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Break Tackle</skill>
+			<skill>Juggernaut</skill>
+			<skill>Regeneration</skill>
+			<skill>Strip Ball</skill>
+		</skillList>
+	</position>
+
+	<position id="necromantic.Whilhelm">
+		<quantity>1</quantity>
+		<name>Wilhelm Chaney</name>
+		<shorthand>WC</shorthand>
+		<type>Star</type>
+		<cost>240000</cost>
+		<movement>8</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/WilhelmChaney.png</portrait>
+		<iconSet size="1">iconsets/WilhelmChaney.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Catch</skill>
+			<skill>Claws</skill>
+			<skill>Frenzy</skill>
+			<skill>Regeneration</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+	</position>
+
+	<position id="necromantic.Ramtut">
+		<quantity>1</quantity>
+		<name>Ramtut III</name>
+		<shorthand>R3</shorthand>
+		<type>Star</type>
+		<cost>380000</cost>
+		<movement>5</movement>
+		<strength>6</strength>
+		<agility>1</agility>
+		<armour>9</armour>
+		<portrait>portraits/RamtutIII.png</portrait>
+		<iconSet size="1">iconsets/RamtutIII.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Break Tackle</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Regeneration</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+	</position>
+
+	<position id="necromantic.Count">
+		<quantity>1</quantity>
+		<name>Count Luthor von Drakenborg</name>
+		<shorthand>CL</shorthand>
+		<type>Star</type>
+		<cost>390000</cost>
+		<movement>6</movement>
+		<strength>5</strength>
+		<agility>4</agility>
+		<armour>9</armour>
+		<portrait>portraits/CountLuthorVonDrakenborg.png</portrait>
+		<iconSet size="1">iconsets/CountLuthorVonDrakenborg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Hypnotic Gaze</skill>
+			<skill>Side Step</skill>
+			<skill>Regeneration</skill>
+		</skillList>
+	</position>
+
+</roster>

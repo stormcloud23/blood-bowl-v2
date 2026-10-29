@@ -1,0 +1,144 @@
+{
+  "autoMarkingRecords": [
+    {
+      "skillArray": [
+        "Side Step"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": true,
+      "marking": "S",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Sneaky Git"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": true,
+      "marking": "Sg",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Dodge"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": false,
+      "marking": "d",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Tackle"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": false,
+      "marking": "t",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Mighty Blow"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": false,
+      "marking": "m",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Block"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": false,
+      "marking": "b",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Dirty Player"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": true,
+      "marking": "Dp",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [
+        "Diving Tackle"
+      ],
+      "injuryAttributes": [],
+      "applyTo": "BOTH",
+      "gainedOnly": true,
+      "marking": "Dt",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [],
+      "injuryAttributes": [
+        "NI"
+      ],
+      "marking": "n",
+      "gainedOnly": true,
+      "applyTo": "BOTH",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [],
+      "injuryAttributes": [
+        "AG"
+      ],
+      "marking": "-Ag",
+      "gainedOnly": true,
+      "applyTo": "BOTH",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [],
+      "injuryAttributes": [
+        "AV"
+      ],
+      "marking": "-Av",
+      "gainedOnly": true,
+      "applyTo": "BOTH",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [],
+      "injuryAttributes": [
+        "MA"
+      ],
+      "marking": "-M",
+      "gainedOnly": true,
+      "applyTo": "BOTH",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [],
+      "injuryAttributes": [
+        "PA"
+      ],
+      "marking": "-P",
+      "gainedOnly": true,
+      "applyTo": "BOTH",
+      "applyRepeatedly": false
+    },
+    {
+      "skillArray": [],
+      "injuryAttributes": [
+        "ST"
+      ],
+      "marking": "-S",
+      "gainedOnly": true,
+      "applyTo": "BOTH",
+      "applyRepeatedly": false
+    }
+  ]
+}

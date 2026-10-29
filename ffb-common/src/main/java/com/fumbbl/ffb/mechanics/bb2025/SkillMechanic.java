@@ -1,0 +1,129 @@
+package com.fumbbl.ffb.mechanics.bb2025;
+
+import com.fumbbl.ffb.FieldCoordinate;
+import com.fumbbl.ffb.PlayerState;
+import com.fumbbl.ffb.RulesCollection;
+import com.fumbbl.ffb.SkillCategory;
+import com.fumbbl.ffb.TurnMode;
+import com.fumbbl.ffb.model.FieldModel;
+import com.fumbbl.ffb.model.Game;
+import com.fumbbl.ffb.model.Keyword;
+import com.fumbbl.ffb.model.Player;
+import com.fumbbl.ffb.model.property.NamedProperties;
+import com.fumbbl.ffb.model.skill.AnimosityValueEvaluator;
+import com.fumbbl.ffb.model.skill.Skill;
+import com.fumbbl.ffb.model.skill.SkillDisplayInfo;
+
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@RulesCollection(RulesCollection.Rules.BB2025)
+public class SkillMechanic extends com.fumbbl.ffb.mechanics.SkillMechanic {
+
+	private static final Set<TurnMode> modesAllowingPro = new HashSet<TurnMode>() {{
+		add(TurnMode.REGULAR);
+		add(TurnMode.BLITZ);
+		add(TurnMode.BOMB_HOME);
+		add(TurnMode.BOMB_AWAY);
+	}};
+
+	@Override
+	public boolean eligibleForPro(Game game, Player<?> player, String originalBomberId) {
+		PlayerState playerState = game.getFieldModel().getPlayerState(player);
+		return (!game.getActingPlayer().isStandingUp() || game.getActingPlayer().hasActedIgnoringNegativeTraits())
+			&& !playerState.isProneOrStunned() && !playerState.isStunned()
+			&& game.getActingPlayer().getPlayer() == player
+			&& modesAllowingPro.contains(game.getTurnMode())
+			&& (!game.getTurnMode().isBombTurn() || player.getId().equals(originalBomberId));
+	}
+
+	@Override
+	public boolean isValidAssist(boolean usingMultiBlock, FieldModel fieldModel, Player<?> player) {
+		return !(usingMultiBlock && fieldModel.isMultiBlockTarget(player.getId()));
+	}
+
+	@Override
+	public boolean isValidPushbackSquare(FieldModel fieldModel, FieldCoordinate coordinate) {
+		return !(fieldModel.wasMultiBlockTargetSquare(coordinate));
+	}
+
+	@Override
+	public boolean canPreventStripBall(PlayerState playerState) {
+		return playerState.hasTacklezones();
+	}
+
+	@Override
+	public boolean allowsCancellingGuard(TurnMode turnMode) {
+		return TurnMode.BLITZ != turnMode;
+	}
+
+	@Override
+	public String calculatePlayerLevel(Game game, Player<?> player) {
+		int gainedSkills = countAdvancements(player);
+
+		switch (gainedSkills) {
+			case 0:
+				return "Rookie";
+			case 1:
+				return "Experienced";
+			case 2:
+				return "Veteran";
+			case 3:
+				return "Emerging";
+			case 4:
+				return "Star";
+			case 5:
+				return "Super Star";
+			default:
+				return "Legend";
+		}
+	}
+
+	@Override
+	public int countAdvancements(Player<?> player) {
+		int offset = 0;
+
+		Set<Skill> gainedSkills = player.skillInfos().stream()
+			.filter(info -> info.getSkill().getCategory() != SkillCategory.STAT_DECREASE
+				&& info.getCategory() == SkillDisplayInfo.Category.PLAYER).map(SkillDisplayInfo::getSkill)
+			.collect(Collectors.toSet());
+
+		// Team Captain is excluded via doesNotCountAsAdvancement, but it also grants Pro which must not count either
+		if (gainedSkills.stream().anyMatch(skill -> skill.hasSkillProperty(NamedProperties.canSaveReRolls))) {
+			offset = 1;
+		}
+
+		return (int) (
+			gainedSkills.stream().filter(skill -> !skill.hasSkillProperty(NamedProperties.doesNotCountAsAdvancement))
+				.count() - offset);
+	}
+
+	@Override
+	public boolean canAlwaysAssistFoul(Game game, Player<?> assistant) {
+		return assistant.hasSkillProperty(NamedProperties.canAlwaysAssistFouls);
+	}
+
+	@Override
+	public boolean animosityExists(Player<?> thrower, Player<?> catcher) {
+		if (thrower == null || catcher == null) {
+			return false;
+		}
+		Skill animosity = thrower.getSkillWithProperty(NamedProperties.hasToRollToPassBallOn);
+		if (animosity == null || !thrower.getTeam().getId().equals(catcher.getTeam().getId())) {
+			return false;
+		}
+		AnimosityValueEvaluator evaluator = (AnimosityValueEvaluator) animosity.evaluator();
+
+		Set<String> pattern = new HashSet<String>() {{
+			add(evaluator.allValue());
+			addAll(catcher.getPosition().getKeywords().stream().map(Keyword::getName).map(String::toLowerCase)
+				.collect(Collectors.toList()));
+		}}.stream().filter(Objects::nonNull).map(String::toLowerCase).collect(Collectors.toSet());
+
+		return evaluator.values(animosity, thrower).stream().map(String::toLowerCase)
+			.anyMatch(pattern::contains);
+	}
+
+}

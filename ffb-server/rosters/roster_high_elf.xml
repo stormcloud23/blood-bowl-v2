@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="highelf.lrb6">
+
+	<name>High Elf</name>
+	<type>Regular</type>
+	<reRollCost>50000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+
+	<position id="47520">
+		<race>Special</race>
+		<quantity>1</quantity>
+		<name>Josef Bugman</name>
+		<shorthand>JB</shorthand>
+		<type>Infamous Staff</type>
+		<gender>male</gender>
+		<cost>100000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>6</passing>
+		<armour>9</armour>
+		<undead>false</undead>
+		<thrall>false</thrall>
+		<portrait>i/694537</portrait>
+		<iconSet size="1" mimeType="image/png">i/694538.png</iconSet>
+		<skillList>
+			<skill>Bugman's XXXXXX</skill>
+			<skill>Keen Player</skill>
+			<skill value="5">Loner</skill>
+			<skill>Tackle</skill>
+			<skill>Thick Skull</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+		<skillCategoryList/>
+	</position>
+
+	<position id="highelf.lineman">
+		<quantity>16</quantity>
+		<name>Lineman</name>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/highelf_lineman.png</portrait>
+		<iconSet size="4">iconsets/highelf_lineman.png</iconSet>
+		<skillList></skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="highelf.thrower">
+		<quantity>2</quantity>
+		<name>Thrower</name>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<passing>2</passing>
+		<armour>8</armour>
+		<portrait>portraits/highelf_thrower.png</portrait>
+		<iconSet size="2">iconsets/highelf_thrower.png</iconSet>
+		<skillList>
+			<skill>Pass</skill>
+			<skill>Safe Throw</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<normal>Passing</normal>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="highelf.blitzer">
+		<quantity>2</quantity>
+		<name>Blitzer</name>
+		<type>Regular</type>
+		<cost>100000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/highelf_blitzer.png</portrait>
+		<iconSet size="2">iconsets/highelf_blitzer.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="highelf.catcher">
+		<quantity>4</quantity>
+		<name>Catcher</name>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>8</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/highelf_catcher.png</portrait>
+		<iconSet size="4">iconsets/highelf_catcher.png</iconSet>
+		<skillList>
+			<skill>Catch</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="highelf.Longstride">
+		<quantity>1</quantity>
+		<name>Dolfar Longstride</name>
+		<shorthand>DL</shorthand>
+		<type>Star</type>
+		<cost>150000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<armour>7</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/DolfarLongstride.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Diving Catch</skill>
+			<skill>Hail Mary Pass</skill>
+			<skill>Kick</skill>
+			<skill>Kick-Off Return</skill>
+			<skill>Pass Block</skill>
+		</skillList>
+	</position>
+
+	<position id="highelf.Soaren">
+		<quantity>1</quantity>
+		<name>Soaren Hightower</name>
+		<shorthand>SH</shorthand>
+		<type>Star</type>
+		<cost>180000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<armour>8</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/SoarenHightower.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Fend</skill>
+			<skill>Kick-Off Return</skill>
+			<skill>Pass</skill>
+			<skill>Safe Throw</skill>
+			<skill>Sure Hands</skill>
+			<skill>Strong Arm</skill>
+		</skillList>
+	</position>
+
+	<position id="highelf.Sidewinder">
+		<quantity>1</quantity>
+		<name>Eldril Sidewinder</name>
+		<shorthand>ES</shorthand>
+		<type>Star</type>
+		<cost>200000</cost>
+		<movement>8</movement>
+		<strength>3</strength>
+		<agility>4</agility>
+		<armour>7</armour>
+		<portrait>portraits/EldrilSidewinder.png</portrait>
+		<iconSet size="1">iconsets/EldrilSidewinder.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Catch</skill>
+			<skill>Dodge</skill>
+			<skill>Hypnotic Gaze</skill>
+			<skill>Nerves of Steel</skill>
+			<skill>Pass Block</skill>
+		</skillList>
+	</position>
+
+	<position id="highelf.Prince">
+		<quantity>1</quantity>
+		<name>Prince Moranion</name>
+		<shorthand>PM</shorthand>
+		<type>Star</type>
+		<cost>230000</cost>
+		<movement>7</movement>
+		<strength>4</strength>
+		<agility>4</agility>
+		<armour>8</armour>
+		<portrait>portraits/PrinceMoranion.png</portrait>
+		<iconSet size="1">iconsets/PrinceMoranion.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Tackle</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+	</position>
+
+	<position id="highelf.Zara">
+		<quantity>1</quantity>
+		<name>Zara the Slayer</name>
+		<shorthand>ZS</shorthand>
+		<type>Star</type>
+		<cost>270000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/ZaraTheSlayer.png</portrait>
+		<iconSet size="1">iconsets/ZaraTheSlayer.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Dodge</skill>
+			<skill>Jump Up</skill>
+			<skill>Stab</skill>
+			<skill>Stakes</skill>
+		</skillList>
+	</position>
+
+	<position id="highelf.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+</roster>

@@ -1,0 +1,214 @@
+package com.fumbbl.ffb.mechanics.bb2025;
+
+import com.fumbbl.ffb.FactoryType.Factory;
+import com.fumbbl.ffb.FieldCoordinate;
+import com.fumbbl.ffb.RulesCollection;
+import com.fumbbl.ffb.factory.DodgeModifierFactory;
+import com.fumbbl.ffb.mechanics.Wording;
+import com.fumbbl.ffb.model.ActingPlayer;
+import com.fumbbl.ffb.model.Game;
+import com.fumbbl.ffb.model.Player;
+import com.fumbbl.ffb.model.property.NamedProperties;
+import com.fumbbl.ffb.model.skill.Skill;
+import com.fumbbl.ffb.modifiers.CatchModifier;
+import com.fumbbl.ffb.modifiers.DodgeContext;
+import com.fumbbl.ffb.modifiers.DodgeModifier;
+import com.fumbbl.ffb.modifiers.GazeModifier;
+import com.fumbbl.ffb.modifiers.InterceptionModifier;
+import com.fumbbl.ffb.modifiers.JumpModifier;
+import com.fumbbl.ffb.modifiers.JumpUpModifier;
+import com.fumbbl.ffb.modifiers.ModifierType;
+import com.fumbbl.ffb.modifiers.OptionalDodgeModifier;
+import com.fumbbl.ffb.modifiers.OptionalDodgeModifierService;
+import com.fumbbl.ffb.modifiers.PickupModifier;
+import com.fumbbl.ffb.modifiers.RightStuffModifier;
+import com.fumbbl.ffb.modifiers.RollModifier;
+import com.fumbbl.ffb.modifiers.StatBasedRollModifier;
+import com.fumbbl.ffb.report.ReportSkillRoll;
+import com.fumbbl.ffb.report.ReportPickupRoll;
+import com.fumbbl.ffb.report.mixed.ReportDodgeRoll;
+import com.fumbbl.ffb.util.ArrayTool;
+import com.fumbbl.ffb.util.UtilPlayer;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
+@RulesCollection(RulesCollection.Rules.BB2025)
+public class AgilityMechanic extends com.fumbbl.ffb.mechanics.AgilityMechanic {
+
+	@Override
+	public int minimumRollJumpUp(Player<?> pPlayer, Set<JumpUpModifier> modifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), modifiers);
+	}
+
+	@Override
+	public int minimumRollDodge(Game pGame, Player<?> pPlayer, Set<DodgeModifier> pDodgeModifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pDodgeModifiers);
+	}
+
+	@Override
+	public int minimumRollDodge(Game pGame, Player<?> pPlayer, Set<DodgeModifier> pDodgeModifiers, StatBasedRollModifier statBasedRollModifier) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pDodgeModifiers, statBasedRollModifier == null ? 0 : statBasedRollModifier.getModifier());
+	}
+
+	@Override
+	public int minimumRollDodgePreview(Game game, ActingPlayer actingPlayer, FieldCoordinate from,
+																		 FieldCoordinate to) {
+		OptionalDodgeModifierService optionalModifierService = new OptionalDodgeModifierService();
+		List<OptionalDodgeModifier> optionalModifiers = optionalModifierService.availableFor(game, actingPlayer, from, to);
+		// only skills improving the roll are declared, and only when they can be used in every turn, skills limited to
+		// one use per drive, half or game would promise a roll the player cannot reach again
+		Set<Skill> selectedSkills = optionalModifiers.stream()
+			.filter(optionalModifier -> isBonus(optionalModifier.getModifier())
+				&& isUsableEveryTurn(optionalModifier.getSkill()))
+			.map(OptionalDodgeModifier::getSkill)
+			.collect(Collectors.toSet());
+		DodgeModifierFactory modifierFactory = game.getFactory(Factory.DODGE_MODIFIER);
+		Set<DodgeModifier> dodgeModifiers =
+			modifierFactory.findModifiers(new DodgeContext(game, actingPlayer, from, to, selectedSkills));
+		// the same goes for bonuses applying on their own, penalties are always part of the roll
+		for (Skill skill : actingPlayer.getPlayer().getSkillsIncludingTemporaryOnes()) {
+			if (!isUsableEveryTurn(skill)) {
+				dodgeModifiers.removeIf(modifier -> isBonus(modifier) && skill.getDodgeModifiers().contains(modifier));
+			}
+		}
+		if (ArrayTool.isProvided(UtilPlayer.findEligibleDivingTacklers(game, from, to,
+			NamedProperties.canAttemptToTackleDodgingPlayer))) {
+			dodgeModifiers.addAll(modifierFactory.forType(ModifierType.DIVING_TACKLE));
+		}
+		return minimumRollDodge(game, actingPlayer.getPlayer(), dodgeModifiers);
+	}
+
+	/**
+	 * @return whether the modifier makes the roll easier
+	 */
+	private boolean isBonus(DodgeModifier modifier) {
+		return modifier.getModifier() < 0;
+	}
+
+	private boolean isUsableEveryTurn(Skill skill) {
+		return skill.getSkillUsageType() != null && skill.getSkillUsageType().isUsableEveryTurn();
+	}
+
+	@Override
+	public int minimumRollPickup(Player<?> pPlayer, Set<PickupModifier> pPickupModifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pPickupModifiers);
+	}
+
+	@Override
+	public int minimumRollInterception(Player<?> pPlayer, Set<InterceptionModifier> pInterceptionModifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pInterceptionModifiers);
+	}
+
+	@Override
+	public int minimumRollJump(Player<?> pPlayer, Set<JumpModifier> pJumpModifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pJumpModifiers);
+	}
+
+	@Override
+	public int minimumRollHypnoticGaze(Player<?> player, Set<GazeModifier> modifiers) {
+		return 3;
+	}
+
+	@Override
+	public int minimumRollCatch(Player<?> pPlayer, Set<CatchModifier> pCatchModifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pCatchModifiers);
+	}
+
+	@Override
+	public int minimumRollRightStuff(Player<?> pPlayer, Set<RightStuffModifier> pRightStuffModifiers) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), pRightStuffModifiers);
+	}
+
+	@Override
+	public int minimumRollSafeThrow(Player<?> pPlayer) {
+		return minimumRoll(pPlayer.getAgilityWithModifiers(), Collections.emptySet());
+	}
+
+	@Override
+	public String formatDodgeResult(ReportSkillRoll report, Player<?> player) {
+		StatBasedRollModifier statBasedRollModifier = null;
+		if (report instanceof ReportDodgeRoll) {
+			statBasedRollModifier = ((ReportDodgeRoll) report).getStatBasedRollModifier();
+		}
+		return formatResult(player.getAgilityWithModifiers(), report.getRollModifiers(), statBasedRollModifier);
+	}
+
+	@Override
+	public String formatJumpResult(ReportSkillRoll report, Player<?> player) {
+		return formatResult(player.getAgilityWithModifiers(), report.getRollModifiers());
+	}
+
+	@Override
+	public String formatJumpUpResult(ReportSkillRoll report, Player<?> player) {
+		return formatResult(player.getAgilityWithModifiers(), report.getRollModifiers());
+	}
+
+	@Override
+	public String formatSafeThrowResult(Player<?> player) {
+		return formatResult(player.getAgilityWithModifiers(), new RollModifier[0]);
+	}
+
+	@Override
+	public String formatRightStuffResult(ReportSkillRoll report, Player<?> player) {
+		return formatResult(player.getAgilityWithModifiers(), report.getRollModifiers());
+	}
+
+	@Override
+	public String formatCatchResult(ReportSkillRoll report, Player<?> player) {
+		return formatResult(player.getAgilityWithModifiers(), report.getRollModifiers());
+	}
+
+	@Override
+	public String formatInterceptionResult(ReportSkillRoll report, Player<?> player) {
+		return formatResult(player.getAgilityWithModifiers(), report.getRollModifiers());
+	}
+
+	@Override
+	public String formatHypnoticGazeResult(ReportSkillRoll report, Player<?> player) {
+		int variableValue = player.getSkillIntValue(NamedProperties.inflictsConfusion);
+
+
+		return formatResult(variableValue == 0 ? player.getAgilityWithModifiers() : variableValue, report.getRollModifiers());
+	}
+
+	@Override
+	public String formatPickupResult(ReportPickupRoll report, Player<?> player) {
+		int baseRoll = player.getAgilityWithModifiers();
+		if (report instanceof com.fumbbl.ffb.report.bb2025.ReportPickupRoll) {
+			if (((com.fumbbl.ffb.report.bb2025.ReportPickupRoll) report).isSecureTheBall()) {
+				baseRoll = 2;
+			}
+		}
+
+		return formatResult(baseRoll, report.getRollModifiers());
+	}
+
+	@Override
+	public Wording interceptionWording(boolean easyIntercept) {
+		return new Wording("Interception", "intercept", "intercepts", "interceptor");
+	}
+
+	@Override
+	public int minimumRoll(int agility, Set<? extends RollModifier<?>> modifiers) {
+		return minimumRoll(agility, modifiers, 0);
+	}
+
+	private int minimumRoll(int agility, Set<? extends RollModifier<?>> modifiers, int statModifier) {
+		return Math.max(2, agility + modifiers.stream().mapToInt(RollModifier::getModifier).sum() - statModifier);
+	}
+
+	private String formatResult(int agility, RollModifier<?>[] modifiers) {
+		return formatResult(agility, modifiers, null);
+	}
+
+	private String formatResult(int agility, RollModifier<?>[] modifiers, StatBasedRollModifier statBasedRollModifier) {
+		String statModifier = "";
+		if (statBasedRollModifier != null) {
+			statModifier = " + " + statBasedRollModifier.getModifier() + " " + statBasedRollModifier.getReportString();
+		}
+		return " (Roll" + formatRollModifiers(modifiers) + statModifier + " >= " + Math.max(2, agility) + "+)";
+	}
+}

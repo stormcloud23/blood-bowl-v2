@@ -1,0 +1,418 @@
+package com.fumbbl.ffb.client.ui;
+
+import com.fumbbl.ffb.FactoryType;
+import com.fumbbl.ffb.IIconProperty;
+import com.fumbbl.ffb.Weather;
+import com.fumbbl.ffb.client.*;
+import com.fumbbl.ffb.client.util.UtilClientGraphics;
+import com.fumbbl.ffb.mechanics.GameMechanic;
+import com.fumbbl.ffb.mechanics.Mechanic;
+import com.fumbbl.ffb.model.FieldModel;
+import com.fumbbl.ffb.model.Game;
+import com.fumbbl.ffb.util.StringTool;
+
+import javax.swing.JPanel;
+import javax.swing.ToolTipManager;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Rectangle;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * @author Kalimar
+ */
+public class ScoreBarComponent extends JPanel implements MouseMotionListener {
+
+	private static final String _TURN = "Turn";
+
+	private final FontCache fontCache;
+	private Font scoreFont;
+	private Font turnNumberFont;
+	private Font turnTextFont;
+
+	private final DimensionProvider dimensionProvider;
+	private final LayoutSettings layoutSettings;
+	private final StyleProvider styleProvider;
+	private Rectangle weatherLocation;
+	private Rectangle spectatorLocation;
+	private Rectangle coachBannedHome;
+	private Rectangle coachBannedAway;
+	private Rectangle cheeringFansHome;
+	private Rectangle cheeringFansAway;
+
+	private final FantasyFootballClient fClient;
+
+	private int fTurnHome;
+	private int fTurnAway;
+	private int fHalf;
+	private int fScoreHome;
+	private int fScoreAway;
+	private int spectatorCount;
+	private int fCheeringFansBlockAssistHome;
+	private int fCheeringFansBlockAssistAway;
+	private Weather fWeather;
+	private boolean fCoachBannedHome;
+	private boolean fCoachBannedAway;
+	private boolean fRefreshNecessary;
+	private BufferedImage fImage;
+	private Font spectatorFont;
+	private final List<String> spectators = new ArrayList<>();
+
+	public ScoreBarComponent(FantasyFootballClient pClient, DimensionProvider dimensionProvider,
+													 StyleProvider styleProvider, FontCache fontCache) {
+		fClient = pClient;
+		this.dimensionProvider = dimensionProvider;
+		this.layoutSettings = dimensionProvider.getLayoutSettings();
+		this.styleProvider = styleProvider;
+		setLayout(null);
+		ToolTipManager.sharedInstance().registerComponent(this);
+		fRefreshNecessary = true;
+		addMouseMotionListener(this);
+		this.fontCache = fontCache;
+	}
+
+	private void drawBackground() {
+		Graphics2D g2d = fImage.createGraphics();
+		if (styleProvider.getFrameBackground() == null) {
+			IconCache iconCache = getClient().getUserInterface().getIconCache();
+			String scorebarBackground = layoutSettings.getLayout() ==
+				ClientLayout.SQUARE ? IIconProperty.SCOREBAR_BACKGROUND_SQUARE : IIconProperty.SCOREBAR_BACKGROUND;
+			BufferedImage background = iconCache.getIconByProperty(scorebarBackground, dimensionProvider);
+			g2d.drawImage(background, 0, 0, fImage.getWidth(), fImage.getHeight(), null);
+		} else {
+			g2d.setColor(styleProvider.getFrameBackground());
+			Dimension dimension = dimensionProvider.dimension(Component.SCORE_BOARD);
+			g2d.fillRect(0, 0, dimension.width, dimension.height);
+		}
+		g2d.dispose();
+	}
+
+	private int lineHeight() {
+		return dimensionProvider.scale(32);
+	}
+
+	private void drawScore() {
+		Graphics2D g2d = fImage.createGraphics();
+		GraphicsEnhancer.applyAAHints(g2d);
+		String scoreHome = Integer.toString(fScoreHome);
+		String scoreAway = Integer.toString(fScoreAway);
+		g2d.setFont(scoreFont);
+		FontMetrics fontMetrics = g2d.getFontMetrics();
+		Rectangle2D boundsHome = fontMetrics.getStringBounds(scoreHome, g2d);
+		int x;
+		x = ((getPreferredSize().width - (int) boundsHome.getWidth()) / 2) - dimensionProvider.scale(40);
+		int y = ((lineHeight() + fontMetrics.getHeight()) / 2) - fontMetrics.getDescent() - 1;
+		if (layoutSettings.getLayout() == ClientLayout.SQUARE) {
+			y += lineHeight();
+		}
+		UtilClientGraphics.drawShadowedText(g2d, scoreHome, x, y, styleProvider);
+		Rectangle2D boundsAway = fontMetrics.getStringBounds(scoreAway, g2d);
+		x = ((getPreferredSize().width - (int) boundsAway.getWidth()) / 2) + dimensionProvider.scale(40);
+		UtilClientGraphics.drawShadowedText(g2d, scoreAway, x, y, styleProvider);
+		g2d.dispose();
+	}
+
+	private void drawTurn() {
+		Graphics2D g2d = fImage.createGraphics();
+		GraphicsEnhancer.applyAAHints(g2d);
+		Game game = getClient().getGame();
+
+		String turn = game.getTurnDataHome().getTurnNr() + " / " +
+			game.getTurnDataAway().getTurnNr();
+
+		g2d.setFont(turnNumberFont);
+		FontMetrics metricsInts = g2d.getFontMetrics();
+		int yInts = ((lineHeight() + metricsInts.getHeight()) / 2) - metricsInts.getDescent() - 1;
+		Rectangle2D turnBounds = metricsInts.getStringBounds(turn, g2d);
+
+		g2d.setFont(turnTextFont);
+		FontMetrics metricsText = g2d.getFontMetrics();
+		int yText = ((lineHeight() + metricsText.getHeight()) / 2) - metricsText.getDescent();
+		Rectangle2D turnPrefixBounds = metricsText.getStringBounds(_TURN, g2d);
+
+		String half;
+		if (game.getHalf() > 2) {
+			half = "of Overtime";
+		} else if (game.getHalf() > 1) {
+			half = "of 2nd half";
+		} else {
+			half = "of 1st half";
+		}
+
+		Rectangle2D halfBounds = metricsText.getStringBounds(half, g2d);
+
+		int x;
+		if (layoutSettings.getLayout() == ClientLayout.SQUARE) {
+			int length = (int) (turnPrefixBounds.getWidth() + turnBounds.getWidth() + halfBounds.getWidth() + dimensionProvider.scale(20));
+			x = (getWidth() - length) / 2;
+		} else {
+			x = 4;
+		}
+
+		g2d.setFont(turnTextFont);
+		UtilClientGraphics.drawShadowedText(g2d, _TURN, x, yText, styleProvider);
+		x += (int) (turnPrefixBounds.getWidth() + dimensionProvider.scale(10));
+		g2d.setFont(turnNumberFont);
+		UtilClientGraphics.drawShadowedText(g2d, turn, x, yInts, styleProvider);
+		x += (int) (turnBounds.getWidth() + dimensionProvider.scale(10));
+		g2d.setFont(turnTextFont);
+		UtilClientGraphics.drawShadowedText(g2d, half, x, yText, styleProvider);
+		g2d.dispose();
+	}
+
+	private void drawSpectators() {
+		if (spectatorCount > 0) {
+			Graphics2D g2d = fImage.createGraphics();
+			GraphicsEnhancer.applyAAHints(g2d);
+			IconCache iconCache = getClient().getUserInterface().getIconCache();
+			BufferedImage spectatorsImage = iconCache.getIconByProperty(IIconProperty.SCOREBAR_SPECTATORS, dimensionProvider);
+			g2d.drawImage(spectatorsImage, spectatorLocation.x, spectatorLocation.y, null);
+			g2d.setFont(spectatorFont);
+			String spectatorString = Integer.toString(spectatorCount);
+			UtilClientGraphics.drawShadowedText(g2d, spectatorString, spectatorLocation.x + dimensionProvider.scale(68), spectatorLocation.y + dimensionProvider.scale(21), styleProvider);
+			g2d.dispose();
+		}
+	}
+
+	private void drawBannedCoaches() {
+		if (fCoachBannedHome || fCoachBannedAway) {
+			Graphics2D g2d = fImage.createGraphics();
+			IconCache iconCache = getClient().getUserInterface().getIconCache();
+			if (fCoachBannedHome) {
+				BufferedImage coachBannedImage = iconCache.getIconByProperty(IIconProperty.SCOREBAR_COACH_BANNED_HOME, dimensionProvider);
+				g2d.drawImage(coachBannedImage, coachBannedHome.x, coachBannedHome.y, null);
+			}
+			if (fCoachBannedAway) {
+				BufferedImage coachBannedImage = iconCache.getIconByProperty(IIconProperty.SCOREBAR_COACH_BANNED_AWAY, dimensionProvider);
+				g2d.drawImage(coachBannedImage, coachBannedAway.x, coachBannedAway.y, null);
+			}
+			g2d.dispose();
+		}
+	}
+
+	private void drawCheeringFansBlockAssist() {
+		if (fCheeringFansBlockAssistHome > 0 || fCheeringFansBlockAssistAway > 0) {
+			Graphics2D g2d = fImage.createGraphics();
+			IconCache iconCache = getClient().getUserInterface().getIconCache();
+
+		if (fCheeringFansBlockAssistHome > 0) {
+			String iconProperty = fCheeringFansBlockAssistHome > 2
+				? IIconProperty.SCOREBAR_CHEERING_FANS_HOME_3
+				: fCheeringFansBlockAssistHome > 1
+					? IIconProperty.SCOREBAR_CHEERING_FANS_HOME_2
+					: IIconProperty.SCOREBAR_CHEERING_FANS_HOME_1;
+			BufferedImage icon = iconCache.getIconByProperty(iconProperty, dimensionProvider);
+			g2d.drawImage(icon, cheeringFansHome.x, cheeringFansHome.y, null);
+		}
+
+		if (fCheeringFansBlockAssistAway > 0) {
+			String iconProperty = fCheeringFansBlockAssistAway > 2
+				? IIconProperty.SCOREBAR_CHEERING_FANS_AWAY_3
+				: fCheeringFansBlockAssistAway > 1
+					? IIconProperty.SCOREBAR_CHEERING_FANS_AWAY_2
+					: IIconProperty.SCOREBAR_CHEERING_FANS_AWAY_1;
+			BufferedImage icon = iconCache.getIconByProperty(iconProperty, dimensionProvider);
+			g2d.drawImage(icon, cheeringFansAway.x, cheeringFansAway.y, null);
+		}
+
+			g2d.dispose();
+		}
+	}
+
+	private void drawWeather() {
+		if (fWeather != null) {
+			String weatherIconProperty = null;
+			switch (fWeather) {
+				case BLIZZARD:
+					weatherIconProperty = IIconProperty.WEATHER_BLIZZARD;
+					break;
+				case INTRO:
+					weatherIconProperty = IIconProperty.WEATHER_INTRO;
+					break;
+				case NICE:
+					weatherIconProperty = IIconProperty.WEATHER_NICE;
+					break;
+				case POURING_RAIN:
+					weatherIconProperty = IIconProperty.WEATHER_RAIN;
+					break;
+				case SWELTERING_HEAT:
+					weatherIconProperty = IIconProperty.WEATHER_HEAT;
+					break;
+				case VERY_SUNNY:
+					weatherIconProperty = IIconProperty.WEATHER_SUNNY;
+					break;
+			}
+			if (StringTool.isProvided(weatherIconProperty)) {
+				IconCache iconCache = getClient().getUserInterface().getIconCache();
+				BufferedImage weatherIcon = iconCache.getIconByProperty(weatherIconProperty, dimensionProvider);
+				Graphics2D g2d = fImage.createGraphics();
+				g2d.drawImage(weatherIcon, weatherLocation.x, weatherLocation.y, null);
+				g2d.dispose();
+			}
+		}
+	}
+
+	public void init() {
+		fTurnHome = 0;
+		fTurnAway = 0;
+		fScoreHome = 0;
+		fScoreAway = 0;
+		spectatorCount = 0;
+		fCheeringFansBlockAssistHome = 0;
+		fCheeringFansBlockAssistAway = 0;
+		fWeather = null;
+		fRefreshNecessary = true;
+		spectators.clear();
+		refresh();
+	}
+
+	public void initLayout() {
+		Dimension size = dimensionProvider.dimension(Component.SCORE_BOARD);
+		setMinimumSize(size);
+		setPreferredSize(size);
+		setMaximumSize(size);
+		fImage = new BufferedImage(size.width, size.height, BufferedImage.TYPE_INT_ARGB);
+
+		int unscaledWidth = dimensionProvider.unscaledDimension(Component.SCORE_BOARD).width;
+
+		if (layoutSettings.getLayout() == ClientLayout.SQUARE) {
+			coachBannedHome = dimensionProvider.scale(new Rectangle(1, 0, 36, 32));
+			coachBannedAway = dimensionProvider.scale(new Rectangle(unscaledWidth - 37, 0, 36, 32));
+			spectatorLocation = dimensionProvider.scale(new Rectangle(1, 64, 66, 32));
+			cheeringFansHome = dimensionProvider.scale(new Rectangle(88, 64, 32, 32));
+			cheeringFansAway = dimensionProvider.scale(new Rectangle(unscaledWidth - 130, 64, 32, 32));
+			weatherLocation = dimensionProvider.scale(new Rectangle(unscaledWidth - 100, 64, 100, 32));
+		} else if (layoutSettings.getLayout() == ClientLayout.WIDE) {
+			cheeringFansHome = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 - 395), 0, 32, 32));
+			coachBannedHome = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 - 315), 0, 32, 32));
+			coachBannedAway = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 + 247), 0, 32, 32));
+			cheeringFansAway = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 + 327), 0, 32, 32));
+			spectatorLocation = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 + 407), 0, 66, 32));
+			weatherLocation = dimensionProvider.scale(new Rectangle(unscaledWidth - 101, 0, 100, 32));
+		} else {
+			cheeringFansHome = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 - 208), 0, 32, 32));
+			coachBannedHome = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 - 166), 0, 32, 32));
+			coachBannedAway = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 + 130), 0, 32, 32));
+			cheeringFansAway = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 + 172), 0, 32, 32));
+			spectatorLocation = dimensionProvider.scale(new Rectangle((unscaledWidth / 2 + 214), 0, 66, 32));
+			weatherLocation = dimensionProvider.scale(new Rectangle(unscaledWidth - 101, 0, 100, 32));
+		}
+	}
+
+	public void refresh() {
+		scoreFont = fontCache.font(Font.BOLD, 24, dimensionProvider);
+		turnNumberFont = fontCache.font(Font.BOLD, 22, dimensionProvider);
+		turnTextFont = fontCache.font(Font.BOLD, 14, dimensionProvider);
+
+		spectatorFont = fontCache.font(Font.BOLD, 14, dimensionProvider);
+
+		Game game = getClient().getGame();
+		ClientData clientData = getClient().getClientData();
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = ((fTurnHome != game.getTurnDataHome().getTurnNr())
+				|| (fTurnAway != game.getTurnDataAway().getTurnNr()) || (fHalf != game.getHalf()));
+		}
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = ((fScoreHome != game.getGameResult().getTeamResultHome().getScore())
+				|| (fScoreAway != game.getGameResult().getTeamResultAway().getScore()));
+		}
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = (spectatorCount != clientData.getSpectatorCount());
+		}
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = !spectators.equals(clientData.getSpectators());
+		}
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = (fWeather != game.getFieldModel().getWeather());
+		}
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = (fCoachBannedHome != game.getTurnDataHome().isCoachBanned())
+				|| (fCoachBannedAway != game.getTurnDataAway().isCoachBanned());
+		}
+		if (!fRefreshNecessary) {
+			fRefreshNecessary = (fCheeringFansBlockAssistHome != game.getTurnDataHome().getCheeringFansBlockAssist())
+				|| (fCheeringFansBlockAssistAway != game.getTurnDataAway().getCheeringFansBlockAssist());
+		}
+
+		if (fRefreshNecessary) {
+			fTurnHome = game.getTurnDataHome().getTurnNr();
+			fTurnAway = game.getTurnDataAway().getTurnNr();
+			fHalf = game.getHalf();
+			fScoreHome = game.getGameResult().getTeamResultHome().getScore();
+			fScoreAway = game.getGameResult().getTeamResultAway().getScore();
+			spectatorCount = clientData.getSpectatorCount();
+			fWeather = game.getFieldModel().getWeather();
+			fCoachBannedHome = game.getTurnDataHome().isCoachBanned();
+			fCoachBannedAway = game.getTurnDataAway().isCoachBanned();
+			fCheeringFansBlockAssistHome = game.getTurnDataHome().getCheeringFansBlockAssist();
+			fCheeringFansBlockAssistAway = game.getTurnDataAway().getCheeringFansBlockAssist();
+
+			spectators.clear();
+			spectators.addAll(clientData.getSpectators());
+			drawBackground();
+			drawTurn();
+			drawScore();
+			drawSpectators();
+			drawWeather();
+			drawBannedCoaches();
+			drawCheeringFansBlockAssist();
+			repaint();
+			fRefreshNecessary = false;
+		}
+	}
+
+	protected void paintComponent(Graphics pGraphics) {
+		pGraphics.drawImage(fImage, 0, 0, null);
+	}
+
+	public FantasyFootballClient getClient() {
+		return fClient;
+	}
+
+	public String getToolTipText(MouseEvent pMouseEvent) {
+		String toolTip = null;
+		Game game = getClient().getGame();
+		GameMechanic mechanic = (GameMechanic) game.getFactory(FactoryType.Factory.MECHANIC).forName(Mechanic.Type.GAME.name());
+		FieldModel fieldModel = game.getFieldModel();
+		if ((fWeather != null) && weatherLocation.contains(pMouseEvent.getPoint())) {
+			toolTip = "<html><b>" + fieldModel.getWeather().getName() + "</b><br>" +
+				mechanic.weatherDescription(fWeather) + "</html>";
+		}
+		if ((spectatorCount > 0) && spectatorLocation.contains(pMouseEvent.getPoint())) {
+			String coaches = spectators.stream().sorted().map(coach -> "<br/> - " + coach).collect(Collectors.joining(""));
+			toolTip = "<html>" + spectatorCount +
+				((spectatorCount == 1) ? " spectator is watching the game:" : " spectators are watching the game:") + coaches +
+				"</html>";
+		}
+		if ((fCheeringFansBlockAssistHome > 0) && cheeringFansHome.contains(pMouseEvent.getPoint())) {
+			toolTip = "<html><b>Cheering Fans</b><br>" +
+				game.getTeamHome().getName() + " gains +" + fCheeringFansBlockAssistHome +
+				" offensive assist" + (fCheeringFansBlockAssistHome > 1 ? "s" : "") +
+				" on their next block action.</html>";
+		}
+		if ((fCheeringFansBlockAssistAway > 0) && cheeringFansAway.contains(pMouseEvent.getPoint())) {
+			toolTip = "<html><b>Cheering Fans</b><br>" +
+				game.getTeamAway().getName() + " gains +" + fCheeringFansBlockAssistAway +
+				" offensive assist" + (fCheeringFansBlockAssistAway > 1 ? "s" : "") +
+				" on their next block action.</html>";
+		}
+		return toolTip;
+	}
+
+	public void mouseMoved(MouseEvent pMouseEvent) {
+		getClient().getUserInterface().getMouseEntropySource().reportMousePosition(pMouseEvent);
+	}
+
+	public void mouseDragged(MouseEvent pMouseEvent) {
+		getClient().getUserInterface().getMouseEntropySource().reportMousePosition(pMouseEvent);
+	}
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.fumbbl.ffb</groupId>
+    <artifactId>ffb</artifactId>
+    <version>3.4.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <!-- Compiles against the Java 8 API even on newer JDKs, source and target alone only set the language level -->
+        <maven.compiler.release>8</maven.compiler.release>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Default Mockito settings for Java 8 -->
+        <mockito.artifact>mockito-inline</mockito.artifact>
+        <mockito.version>4.11.0</mockito.version>
+        <mockito.junit.version>4.11.0</mockito.junit.version>
+        <!-- Lets Mockito's inline mock maker instrument classes on Java versions newer than Byte Buddy officially
+             supports, picked up by surefire as default argLine -->
+        <argLine>-Dnet.bytebuddy.experimental=true</argLine>
+    </properties>
+    <modules>
+        <module>ffb-common</module>
+        <module>ffb-tools</module>
+        <module>ffb-server</module>
+        <module>ffb-client</module>
+        <module>ffb-client-logic</module>
+        <module>ffb-resources</module>
+        <module>ffb-statetest</module>
+    </modules>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.classgraph</groupId>
+                <artifactId>classgraph</artifactId>
+                <version>4.8.98</version>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-api</artifactId>
+                <version>5.5.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>5.5.0</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-junit-jupiter</artifactId>
+                <version>${mockito.junit.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>${mockito.artifact}</artifactId>
+                <version>${mockito.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <!-- The default compiler version does not support the release option -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.15.0</version>
+                </plugin>
+                <plugin>
+                    <!-- The default surefire version does not run JUnit 5 tests -->
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.5.4</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <profiles>
+        <!-- Profile for Java 21 builds (overrides properties for Mockito and compiler) -->
+        <profile>
+            <id>mockito5</id>
+            <properties>
+                <!-- Override Mockito for Java 21+ -->
+                <mockito.artifact>mockito-core</mockito.artifact>
+                <mockito.version>5.23.0</mockito.version>
+                <mockito.junit.version>5.23.0</mockito.junit.version>
+            </properties>
+        </profile>
+    </profiles>
+</project>

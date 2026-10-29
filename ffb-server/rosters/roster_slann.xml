@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="slann.lrb6">
+
+	<name>Slann</name>
+	<type>Regular</type>
+	<reRollCost>50000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+  
+	<position id="slann.lineman">
+		<quantity>16</quantity>
+		<name>Lineman</name>
+		<shorthand>L</shorthand>
+		<type>Regular</type>
+		<cost>60000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/slann_lineman.png</portrait>
+		<iconSet size="7">iconsets/slann_lineman.png</iconSet>
+		<skillList>
+			<skill>Leap</skill>
+			<skill>Very Long Legs</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="slann.catcher">
+		<quantity>4</quantity>
+		<name>Catcher</name>
+		<shorthand>C</shorthand>
+		<type>Regular</type>
+		<cost>80000</cost>
+		<movement>7</movement>
+		<strength>2</strength>
+		<agility>4</agility>
+		<passing>4</passing>
+		<armour>7</armour>
+		<portrait>portraits/slann_catcher.png</portrait>
+		<iconSet size="4">iconsets/slann_catcher.png</iconSet>
+		<skillList>
+			<skill>Diving Catch</skill>
+			<skill>Leap</skill>
+			<skill>Very Long Legs</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="slann.blitzer">
+		<quantity>4</quantity>
+		<name>Blitzer</name>
+		<shorthand>B</shorthand>
+		<type>Regular</type>
+		<cost>110000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/slann_blitzer.png</portrait>
+		<iconSet size="4">iconsets/slann_blitzer.png</iconSet>
+		<skillList>
+			<skill>Diving Tackle</skill>
+			<skill>Jump Up</skill>
+			<skill>Leap</skill>
+			<skill>Very Long Legs</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<normal>Strength</normal>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="slann.kroxigor">
+		<quantity>1</quantity>
+		<name>Kroxigor</name>
+		<shorthand>K</shorthand>
+		<type>Big Guy</type>
+		<cost>140000</cost>
+		<movement>6</movement>
+		<strength>5</strength>
+		<agility>1</agility>
+		<passing>0</passing>
+		<armour>9</armour>
+		<portrait>portraits/slann_kroxigor.png</portrait>
+		<iconSet size="1">iconsets/slann_kroxigor.png</iconSet>
+		<skillList>
+			<skill>Bone head</skill>
+			<skill>Loner</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Prehensile Tail</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<double>General</double>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="slann.Helmut">
+		<quantity>1</quantity>
+		<name>Helmut Wulf</name>
+		<shorthand>HW</shorthand>
+		<type>Star</type>
+		<cost>110000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/HelmutWulf.png</portrait>
+		<iconSet size="1">iconsets/HelmutWulf.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stand Firm</skill>
+		</skillList>
+	</position>
+
+	<position id="slann.Hemlock">
+		<quantity>1</quantity>
+		<name>Hemlock</name>
+		<shorthand>HL</shorthand>
+		<type>Star</type>
+		<cost>170000</cost>
+		<movement>8</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/Hemlock.png</portrait>
+		<iconSet size="1">iconsets/Hemlock.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dodge</skill>
+			<skill>Side Step</skill>
+			<skill>Jump Up</skill>
+			<skill>Stab</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="slann.Lottabottal">
+		<quantity>1</quantity>
+		<name>Lottabottol</name>
+		<shorthand>LB</shorthand>
+		<type>Star</type>
+		<cost>220000</cost>
+		<movement>8</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/Lottabottol.png</portrait>
+		<iconSet size="1">iconsets/Lottabottol.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Catch</skill>
+			<skill>Diving Tackle</skill>
+			<skill>Jump Up</skill>
+			<skill>Leap</skill>
+			<skill>Pass Block</skill>
+			<skill>Shadowing</skill>
+			<skill>Very Long Legs</skill>
+		</skillList>
+	</position>
+
+	<position id="slann.Slibli">
+		<quantity>1</quantity>
+		<name>Slibli</name>
+		<shorthand>SL</shorthand>
+		<type>Star</type>
+		<cost>250000</cost>
+		<movement>7</movement>
+		<strength>4</strength>
+		<agility>1</agility>
+		<armour>9</armour>
+		<portrait>portraits/Slibli.png</portrait>
+		<iconSet size="1">iconsets/Slibli.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Grab</skill>
+			<skill>Guard</skill>
+			<skill>Stand Firm</skill>
+		</skillList>
+	</position>
+
+	<position id="slann.Quetzal">
+		<quantity>1</quantity>
+		<name>Quetzal Leap</name>
+		<shorthand>QL</shorthand>
+		<type>Star</type>
+		<cost>250000</cost>
+		<movement>8</movement>
+		<strength>2</strength>
+		<agility>4</agility>
+		<armour>7</armour>
+		<portrait>portraits/QuetzalLeap.png</portrait>
+		<iconSet size="1">iconsets/QuetzalLeap.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Catch</skill>
+			<skill>Diving Catch</skill>
+			<skill>Fend</skill>
+			<skill>Kick-Off Return</skill>
+			<skill>Leap</skill>
+			<skill>Nerves of Steel</skill>
+			<skill>Very Long Legs</skill>
+		</skillList>
+	</position>
+
+	<position id="slann.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>iconsets/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+</roster>

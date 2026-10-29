@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="dwarf.lrb6">
+
+	<name>Dwarf</name>
+	<type>Regular</type>
+	<reRollCost>40000</reRollCost>	
+	<maxReRolls>8</maxReRolls>	
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+	<nameGenerator>default</nameGenerator>
+
+	<position id="dwarf.blocker">
+		<quantity>12</quantity>
+		<name>Blocker</name>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>4</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<passing>5</passing>
+		<armour>9</armour>
+		<portrait>portraits/dwarf_blocker.png</portrait>
+		<iconSet size="6">iconsets/dwarf_blocker.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Tackle</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="dwarf.blitzer">
+		<quantity>2</quantity>
+		<name>Blitzer</name>
+		<type>Regular</type>
+		<cost>80000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>9</armour>
+		<portrait>portraits/dwarf_blitzer.png</portrait>
+		<iconSet size="2">iconsets/dwarf_blitzer.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="dwarf.runner">
+		<quantity>2</quantity>
+		<name>Runner</name>
+		<type>Regular</type>
+		<cost>80000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/dwarf_runner.png</portrait>
+		<iconSet size="3">iconsets/dwarf_runner.png</iconSet>
+		<skillList>
+			<skill>Sure Hands</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Passing</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+	
+	<position id="dwarf.trollslayer">
+		<quantity>2</quantity>
+		<name>Troll Slayer</name>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<passing>0</passing>
+		<armour>8</armour>
+		<portrait>portraits/dwarf_trollslayer.png</portrait>
+		<iconSet size="2">iconsets/dwarf_trollslayer.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Frenzy</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="dwarf.deathroller">
+		<quantity>1</quantity>
+		<name>Deathroller</name>
+		<type>Big Guy</type>
+		<cost>160000</cost>
+		<movement>4</movement>
+		<strength>7</strength>
+		<agility>1</agility>
+		<passing>0</passing>
+		<armour>10</armour>
+		<portrait>portraits/dwarf_deathroller.png</portrait>
+		<iconSet size="1">iconsets/dwarf_deathroller.png</iconSet>
+		<skillList>
+			<skill>Break Tackle</skill>
+			<skill>Dirty Player</skill>
+			<skill>Juggernaut</skill>
+			<skill>Mighty Blow</skill>
+			<skill>No Hands</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stand Firm</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<double>General</double>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="dwarf.Farblast">
+		<quantity>1</quantity>
+		<name>Barik Farblast</name>
+		<shorthand>BF</shorthand>
+		<type>Star</type>
+		<cost>60000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/BarikFarblast.png</portrait>
+		<iconSet size="1">iconsets/BarikFarblast.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Hail Mary Pass</skill>
+			<skill>Pass</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Strong Arm</skill>
+			<skill>Sure Hands</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+
+	<position id="dwarf.Eziasson">
+		<quantity>1</quantity>
+		<name>Boomer Eziasson</name>
+		<shorthand>BE</shorthand>
+		<type>Star</type>
+		<cost>60000</cost>
+		<movement>4</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<armour>9</armour>
+		<portrait>portraits/BoomerEziasson.png</portrait>
+		<iconSet size="1">iconsets/BoomerEziasson.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Accurate</skill>
+			<skill>Block</skill>
+			<skill>Bombardier</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+  
+	<position id="dwarf.Churnblade">
+		<quantity>1</quantity>
+		<name>Flint Churnblade</name>
+		<shorthand>FC</shorthand>
+		<type>Star</type>
+		<cost>130000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>2</agility>
+		<armour>8</armour>
+		<portrait>portraits/FlintChurnblade.png</portrait>
+		<iconSet size="1">iconsets/FlintChurnblade.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+  
+	<position id="dwarf.Ironjaw">
+		<quantity>1</quantity>
+		<name>Grim Ironjaw</name>
+		<shorthand>GI</shorthand>
+		<type>Star</type>
+		<cost>220000</cost>
+		<movement>5</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/GrimIronjaw.png</portrait>
+		<iconSet size="1">iconsets/GrimIronjaw.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Frenzy</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+  
+	<position id="dwarf.Zara">
+		<quantity>1</quantity>
+		<name>Zara the Slayer</name>
+		<shorthand>ZS</shorthand>
+		<type>Star</type>
+		<cost>270000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/ZaraTheSlayer.png</portrait>
+		<iconSet size="1">iconsets/ZaraTheSlayer.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Dodge</skill>
+			<skill>Jump Up</skill>
+			<skill>Stab</skill>
+			<skill>Stakes</skill>
+		</skillList>
+	</position>
+  
+	<position id="dwarf.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+</roster>

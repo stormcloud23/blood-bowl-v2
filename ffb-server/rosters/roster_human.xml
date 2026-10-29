@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="human.lrb6">
+
+	<name>Human</name>
+	<type>Regular</type>
+	<reRollCost>50000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+	<nameGenerator>default</nameGenerator>
+
+
+	<position id="47520">
+		<race>Special</race>
+		<quantity>1</quantity>
+		<name>Josef Bugman</name>
+		<shorthand>JB</shorthand>
+		<type>Infamous Staff</type>
+		<gender>male</gender>
+		<cost>100000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>6</passing>
+		<armour>9</armour>
+		<undead>false</undead>
+		<thrall>false</thrall>
+		<portrait>i/694537</portrait>
+		<iconSet size="1" mimeType="image/png">i/694538.png</iconSet>
+		<skillList>
+			<skill>Bugman's XXXXXX</skill>
+			<skill>Keen Player</skill>
+			<skill value="5">Loner</skill>
+			<skill>Tackle</skill>
+			<skill>Thick Skull</skill>
+			<skill>Wrestle</skill>
+		</skillList>
+		<skillCategoryList/>
+	</position>
+
+	<position id="human.lineman">
+		<quantity>16</quantity>
+		<name>Lineman</name>
+		<displayName>Human Lineman</displayName>
+		<type>Regular</type>
+		<cost>50000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/human_lineman.png</portrait>
+		<iconSet size="2">iconsets/human_lineman.png</iconSet>
+		<skillList></skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="human.blitzer">
+		<quantity>4</quantity>
+		<name>Blitzer</name>
+		<displayName>Human Blitzer</displayName>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>8</armour>
+		<portrait>portraits/human_blitzer.png</portrait>
+		<iconSet size="1">iconsets/human_blitzer.png</iconSet>
+		<skillList>
+			<skill>Block</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="human.thrower">
+		<quantity>2</quantity>
+		<name>Thrower</name>
+		<displayName>Human Thrower</displayName>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>2</passing>
+		<armour>8</armour>
+		<portrait>portraits/human_thrower.png</portrait>
+		<iconSet size="1">iconsets/human_thrower.png</iconSet>
+		<skillList>
+			<skill>Pass</skill>
+			<skill>Sure Hands</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Passing</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+	
+	<position id="human.catcher">
+		<replacesPosition>human.catcher.old</replacesPosition>
+		<quantity>4</quantity>
+		<name>Catcher</name>
+		<displayName>Human Catcher</displayName>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>8</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/human_catcher.png</portrait>
+		<iconSet size="4">iconsets/human_catcher.png</iconSet>
+		<skillList>
+			<skill>Catch</skill>
+			<skill>Dodge</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Passing</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="human.catcher.old">
+		<quantity>0</quantity>
+		<name>Catcher</name>
+		<displayName>Human Catcher</displayName>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>8</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/human_catcher.png</portrait>
+		<iconSet size="4">iconsets/human_catcher.png</iconSet>
+		<skillList>
+			<skill>Catch</skill>
+			<skill>Dodge</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Passing</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="human.ogre">
+		<quantity>1</quantity>
+		<name>Ogre</name>
+		<type>Big Guy</type>
+		<cost>140000</cost>
+		<movement>5</movement>
+		<strength>5</strength>
+		<agility>2</agility>
+		<passing>5</passing>
+		<armour>9</armour>
+		<portrait>portraits/human_ogre.png</portrait>
+		<iconSet size="6">iconsets/human_ogre.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>bone head</skill>
+			<skill>bone-head</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+			<double>General</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="human.Helmut">
+		<quantity>1</quantity>
+		<name>Helmut Wulf</name>
+		<shorthand>HW</shorthand>
+		<type>Star</type>
+		<cost>110000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/HelmutWulf.png</portrait>
+		<iconSet size="1">iconsets/HelmutWulf.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stand Firm</skill>
+		</skillList>
+	</position>
+
+	<position id="human.Puggy">
+		<quantity>1</quantity>
+		<name>Puggy Baconbreath</name>
+		<shorthand>PB</shorthand>
+		<type>Star</type>
+		<cost>140000</cost>
+		<movement>5</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>6</armour>
+		<portrait>portraits/PuggyBaconbreath.png</portrait>
+		<iconSet size="1">iconsets/PuggyBaconbreath.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dodge</skill>
+			<skill>Nerves of Steel</skill>
+			<skill>Right Stuff</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="human.Zug">
+		<quantity>1</quantity>
+		<name>Mighty Zug</name>
+		<shorthand>ZG</shorthand>
+		<type>Star</type>
+		<cost>260000</cost>
+		<movement>4</movement>
+		<strength>5</strength>
+		<agility>2</agility>
+		<armour>9</armour>
+		<portrait>portraits/MightyZug.png</portrait>
+		<iconSet size="1">iconsets/MightyZug.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+		</skillList>
+	</position>
+
+	<position id="human.Zara">
+		<quantity>1</quantity>
+		<name>Zara the Slayer</name>
+		<shorthand>ZS</shorthand>
+		<type>Star</type>
+		<cost>270000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/ZaraTheSlayer.png</portrait>
+		<iconSet size="1">iconsets/ZaraTheSlayer.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Dodge</skill>
+			<skill>Jump Up</skill>
+			<skill>Stab</skill>
+			<skill>Stakes</skill>
+		</skillList>
+	</position>
+
+	<position id="human.Griff">
+		<quantity>1</quantity>
+		<name>Griff Oberwald</name>
+		<shorthand>GO</shorthand>
+		<type>Star</type>
+		<cost>320000</cost>
+		<movement>7</movement>
+		<strength>4</strength>
+		<agility>4</agility>
+		<armour>8</armour>
+		<portrait>portraits/GriffOberwald.png</portrait>
+		<iconSet size="1">iconsets/GriffOberwald.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dodge</skill>
+			<skill>Fend</skill>
+			<skill>Sprint</skill>
+			<skill>Sure Feet</skill>
+		</skillList>
+	</position>
+
+	<position id="human.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>  
+  
+</roster>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="underworld.lrb6">
+
+	<name>Underworld</name>
+	<type>Regular</type>
+	<reRollCost>70000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+
+	<maxBigGuys>2</maxBigGuys>
+
+	<position id="37844">
+		<quantity>2</quantity>
+		<name>Mutant Rat Ogre</name>
+		<shorthand>RO</shorthand>
+		<type>Big Guy</type>
+		<gender>random</gender>
+		<cost>150000</cost>
+		<movement>6</movement>
+		<strength>5</strength>
+		<agility>4</agility>
+		<passing>0</passing>
+		<armour>9</armour>
+		<undead>false</undead>
+		<thrall>false</thrall>
+		<portrait>i/673332</portrait>
+		<iconSet size="1" mimeType="image/png">i/673333.png</iconSet>
+		<skillList>
+			<skill>Animal Savagery</skill>
+			<skill>Frenzy</skill>
+			<skill value="4">Loner</skill>
+			<skill value="1">Mighty Blow</skill>
+			<skill>Prehensile Tail</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<normal>Mutation</normal>
+			<double>General</double>
+			<double>Agility</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="underworld.goblin">
+		<quantity>12</quantity>
+		<name>Underworld Goblin</name>
+		<shorthand>G</shorthand>
+		<type>Regular</type>
+		<cost>40000</cost>
+		<movement>6</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>7</armour>
+		<race>Goblin</race>
+		<portrait>portraits/underworld_underworldgoblin.png</portrait>
+		<iconSet size="6">iconsets/underworld_underworldgoblin.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+			<skill>Right Stuff</skill>
+			<skill>Stunty</skill>
+			<skill displayValueAs="Rats" value="Skaven">Animosity</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Agility</normal>
+			<normal>Mutation</normal>
+			<double>General</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="underworld.skaven.lineman">
+		<quantity>16</quantity>
+		<name>Skaven Lineman</name>
+		<shorthand>L</shorthand>
+		<type>Regular</type>
+		<cost>50000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>7</armour>
+		<race>Skaven</race>
+		<portrait>portraits/underworld_skavenlineman.png</portrait>
+		<iconSet size="3">iconsets/underworld_skavenlineman.png</iconSet>
+		<skillList>
+			<skill displayValueAs="Positions with T" value="underworld.skaven.thrower;underworld.troll.warpstone">
+				Animosity
+			</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Mutation</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="underworld.skaven.thrower">
+		<quantity>2</quantity>
+		<name>Skaven Thrower</name>
+		<shorthand>T</shorthand>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>2</passing>
+		<armour>7</armour>
+		<race>Skaven</race>
+		<portrait>portraits/underworld_skaventhrower.png</portrait>
+		<iconSet size="1">iconsets/underworld_skaventhrower.png</iconSet>
+		<skillList>
+			<skill value="All">Animosity</skill>
+			<skill>Pass</skill>
+			<skill>Sure Hands</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Passing</normal>
+			<normal>Mutation</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="underworld.skaven.blitzer">
+		<quantity>2</quantity>
+		<name>Skaven Blitzer</name>
+		<shorthand>B</shorthand>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>7</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>8</armour>
+		<race>Skaven</race>
+		<portrait>portraits/underworld_skavenblitzer.png</portrait>
+		<iconSet size="2">iconsets/underworld_skavenblitzer.png</iconSet>
+		<skillList>
+			<skill>Animosity</skill>
+			<skill>Block</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<normal>Mutation</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="underworld.troll.warpstone">
+		<quantity>2</quantity>
+		<name>Warpstone Troll</name>
+		<shorthand>WT</shorthand>
+		<type>Big Guy</type>
+		<cost>110000</cost>
+		<movement>4</movement>
+		<strength>5</strength>
+		<agility>1</agility>
+		<passing>5</passing>
+		<armour>9</armour>
+		<portrait>portraits/underworld_warpstonetroll.png</portrait>
+		<iconSet size="1">iconsets/underworld_warpstonetroll.png</iconSet>
+		<skillList>
+			<skill>Always Hungry</skill>
+			<skill>Loner</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Really Stupid</skill>
+			<skill>Regeneration</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<normal>Mutation</normal>
+			<double>General</double>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="underworld.Dribblesnot">
+		<quantity>1</quantity>
+		<name>Bomber Dribblesnot</name>
+		<shorthand>BD</shorthand>
+		<type>Star</type>
+		<cost>60000</cost>
+		<movement>6</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/BomberDribblesnot.png</portrait>
+		<iconSet size="1">iconsets/BomberDribblesnot.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Accurate</skill>
+			<skill>Bombardier</skill>
+			<skill>Dodge</skill>
+			<skill>Right Stuff</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="underworld.Fezglitch">
+		<quantity>1</quantity>
+		<name>Fezglitch</name>
+		<shorthand>FZ</shorthand>
+		<type>Star</type>
+		<cost>100000</cost>
+		<movement>4</movement>
+		<strength>7</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/Fezglitch.png</portrait>
+		<iconSet size="1">iconsets/Fezglitch.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Ball and Chain</skill>
+			<skill>Disturbing Presence</skill>
+			<skill>Foul Appearance</skill>
+			<skill>No Hands</skill>
+			<skill>Secret Weapon</skill>
+		</skillList>
+	</position>
+
+	<position id="underworld.Glart">
+		<quantity>1</quantity>
+		<name>Glart Smashrip Jr.</name>
+		<shorthand>GS</shorthand>
+		<type>Star</type>
+		<cost>210000</cost>
+		<movement>7</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/GlartSmashripJr.png</portrait>
+		<iconSet size="1">iconsets/GlartSmashripJr.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Claw</skill>
+			<skill>Juggernaut</skill>
+		</skillList>
+	</position>
+
+	<position id="underworld.Nobbla">
+		<quantity>1</quantity>
+		<name>Nobbla Blackwart</name>
+		<shorthand>NB</shorthand>
+		<type>Star</type>
+		<cost>130000</cost>
+		<movement>6</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/NobblaBlackwart.png</portrait>
+		<iconSet size="1">iconsets/NobblaBlackwart.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dodge</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="underworld.Skitter">
+		<quantity>1</quantity>
+		<name>Skitter Stab-Stab</name>
+		<shorthand>SK</shorthand>
+		<type>Star</type>
+		<cost>160000</cost>
+		<movement>9</movement>
+		<strength>2</strength>
+		<agility>4</agility>
+		<armour>7</armour>
+		<portrait>portraits/SkitterStabStab.png</portrait>
+		<iconSet size="1">iconsets/SkitterStabStab.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Dodge</skill>
+			<skill>Prehensile Tail</skill>
+			<skill>Shadowing</skill>
+			<skill>Stab</skill>
+		</skillList>
+	</position>
+
+	<position id="underworld.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+  
+</roster>

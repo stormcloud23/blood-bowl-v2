@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="amazon.lrb6">
+
+	<name>Amazon</name>
+	<type>Regular</type>
+	<reRollCost>50000</reRollCost>	
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+	<nameGenerator>amazon</nameGenerator>
+
+	<position id="amazon.blitzer">
+		<quantity>4</quantity>
+		<name>Blitzer</name>
+		<type>Regular</type>
+		<cost>90000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/amazon_blitzer.png</portrait>
+		<iconSet size="4">iconsets/amazon_blitzer.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+			<skill>Block</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="amazon.catcher">
+		<quantity>2</quantity>
+		<name>Catcher</name>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/amazon_catcher.png</portrait>
+		<iconSet size="2">iconsets/amazon_catcher.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+			<skill>Catch</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Agility</normal>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="amazon.thrower">
+		<quantity>2</quantity>
+		<name>Thrower</name>
+		<type>Regular</type>
+		<cost>70000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>7</armour>
+		<portrait>portraits/amazon_thrower.png</portrait>
+		<iconSet size="2">iconsets/amazon_thrower.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+			<skill>Pass</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<normal>Passing</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="amazon.linewoman">
+		<quantity>16</quantity>
+		<name>Linewoman</name>
+		<type>Regular</type>
+		<cost>50000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<passing>4</passing>
+		<armour>7</armour>
+		<portrait>portraits/amazon_linewoman.png</portrait>
+		<iconSet size="2">iconsets/amazon_linewoman.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>General</normal>
+			<double>Agility</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+  
+	<position id="amazon.Helmut">
+		<quantity>1</quantity>
+		<name>Helmut Wulf</name>
+		<shorthand>HW</shorthand>
+		<type>Star</type>
+		<cost>110000</cost>
+		<movement>6</movement>
+		<strength>3</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/HelmutWulf.png</portrait>
+		<iconSet size="1">iconsets/HelmutWulf.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stand Firm</skill>
+		</skillList>
+	</position>
+
+	<position id="amazon.Willow">
+		<quantity>1</quantity>
+		<name>Willow Rosebark</name>
+		<shorthand>WR</shorthand>
+		<type>Star</type>
+		<cost>150000</cost>
+		<movement>5</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/WillowRosebark.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Dauntless</skill>
+			<skill>Side Step</skill>
+			<skill>Thick Skull</skill>
+		</skillList>
+	</position>
+
+	<position id="amazon.Roxanna">
+		<quantity>1</quantity>
+		<name>Roxanna Darknail</name>
+		<shorthand>RX</shorthand>
+		<type>Star</type>
+		<cost>250000</cost>
+		<movement>8</movement>
+		<strength>3</strength>
+		<agility>5</agility>
+		<armour>7</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/RoxannaDarknail.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Dodge</skill>
+			<skill>Frenzy</skill>
+			<skill>Jump Up</skill>
+			<skill>Juggernaut</skill>
+			<skill>Leap</skill>
+		</skillList>
+	</position>
+
+	<position id="amazon.Zara">
+		<quantity>1</quantity>
+		<name>Zara the Slayer</name>
+		<shorthand>ZS</shorthand>
+		<type>Star</type>
+		<cost>270000</cost>
+		<movement>6</movement>
+		<strength>4</strength>
+		<agility>3</agility>
+		<armour>8</armour>
+		<portrait>portraits/ZaraTheSlayer.png</portrait>
+		<iconSet size="1">iconsets/ZaraTheSlayer.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dauntless</skill>
+			<skill>Dodge</skill>
+			<skill>Jump Up</skill>
+			<skill>Stab</skill>
+			<skill>Stakes</skill>
+		</skillList>
+	</position>
+
+	<position id="amazon.Bigfist">
+		<quantity>1</quantity>
+		<name>Bertha Bigfist</name>
+		<shorthand>BB</shorthand>
+		<type>Star</type>
+		<cost>290000</cost>
+		<movement>6</movement>
+		<strength>5</strength>
+		<agility>2</agility>
+		<armour>9</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/BerthaBigfist.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>bone head</skill>
+			<skill>Break Tackle</skill>
+			<skill>Dodge</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+	<position id="amazon.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+</roster>

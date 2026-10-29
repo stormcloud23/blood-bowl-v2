@@ -1,0 +1,164 @@
+package com.fumbbl.ffb.server.skillbehaviour.bb2025;
+
+import com.fumbbl.ffb.FactoryType;
+import com.fumbbl.ffb.FieldCoordinate;
+import com.fumbbl.ffb.PassingDistance;
+import com.fumbbl.ffb.ReRolledAction;
+import com.fumbbl.ffb.ReRolledActions;
+import com.fumbbl.ffb.RulesCollection;
+import com.fumbbl.ffb.RulesCollection.Rules;
+import com.fumbbl.ffb.dialog.DialogSkillUseParameter;
+import com.fumbbl.ffb.factory.PassModifierFactory;
+import com.fumbbl.ffb.mechanics.Mechanic;
+import com.fumbbl.ffb.mechanics.PassMechanic;
+import com.fumbbl.ffb.mechanics.PassResult;
+import com.fumbbl.ffb.mechanics.TtmMechanic;
+import com.fumbbl.ffb.model.ActingPlayer;
+import com.fumbbl.ffb.model.Game;
+import com.fumbbl.ffb.model.Player;
+import com.fumbbl.ffb.model.property.NamedProperties;
+import com.fumbbl.ffb.modifiers.PassContext;
+import com.fumbbl.ffb.modifiers.PassModifier;
+import com.fumbbl.ffb.net.commands.ClientCommandUseSkill;
+import com.fumbbl.ffb.report.mixed.ReportThrowTeamMateRoll;
+import com.fumbbl.ffb.server.model.SkillBehaviour;
+import com.fumbbl.ffb.server.model.StepModifier;
+import com.fumbbl.ffb.server.step.StepAction;
+import com.fumbbl.ffb.server.step.StepCommandStatus;
+import com.fumbbl.ffb.server.step.StepParameter;
+import com.fumbbl.ffb.server.step.StepParameterKey;
+import com.fumbbl.ffb.server.step.bb2025.ttm.StepThrowTeamMate;
+import com.fumbbl.ffb.server.step.bb2025.ttm.StepThrowTeamMate.StepState;
+import com.fumbbl.ffb.server.util.UtilServerDialog;
+import com.fumbbl.ffb.server.util.UtilServerReRoll;
+import com.fumbbl.ffb.skill.mixed.ThrowTeamMate;
+
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+
+@RulesCollection(Rules.BB2025)
+public class ThrowTeamMateBehaviour extends SkillBehaviour<ThrowTeamMate> {
+	public ThrowTeamMateBehaviour() {
+		super();
+
+		registerModifier(new StepModifier<StepThrowTeamMate, StepState>(2) {
+
+			@Override
+			public StepCommandStatus handleCommandHook(StepThrowTeamMate step, StepState state,
+			                                           ClientCommandUseSkill useSkillCommand) {
+				return StepCommandStatus.EXECUTE_STEP;
+			}
+
+			@Override
+			public boolean handleExecuteStepHook(StepThrowTeamMate step, StepState state) {
+				Game game = step.getGameState().getGame();
+				ActingPlayer actingPlayer = game.getActingPlayer();
+				actingPlayer.setHasPassed(true);
+				game.setThrowerId(actingPlayer.getPlayerId());
+				game.setConcessionPossible(false);
+				ReRolledAction rerolledAction;
+				if (state.kicked) {
+					game.getTurnData().setKtmUsed(true);
+					rerolledAction = ReRolledActions.KICK_TEAM_MATE;
+				} else {
+					game.getTurnData().setTtmUsed(true);
+					rerolledAction = ReRolledActions.THROW_TEAM_MATE;
+				}
+				UtilServerDialog.hideDialog(step.getGameState());
+				Player<?> thrower = game.getActingPlayer().getPlayer();
+				boolean doRoll = true;
+				if (rerolledAction == step.getReRolledAction()) {
+					if ((step.getReRollSource() == null) || !UtilServerReRoll.useReRoll(step, step.getReRollSource(), thrower)) {
+						handlePassResult(state.passResult, step);
+						doRoll = false;
+					}
+				}
+				if (doRoll) {
+					PassModifierFactory passModifierFactory = game.getFactory(FactoryType.Factory.PASS_MODIFIER);
+					FieldCoordinate throwerCoordinate = game.getFieldModel().getPlayerCoordinate(thrower);
+					PassMechanic mechanic = (PassMechanic) game.getFactory(FactoryType.Factory.MECHANIC).forName(Mechanic.Type.PASS.name());
+					PassingDistance passingDistance = mechanic.findPassingDistance(game, throwerCoordinate,
+						game.getPassCoordinate(), true);
+					Set<PassModifier> passModifiers = passModifierFactory.findModifiers(new PassContext(game, thrower, passingDistance, true));
+					TtmMechanic ttmMechanic = (TtmMechanic) game.getFactory(FactoryType.Factory.MECHANIC).forName(Mechanic.Type.TTM.name());
+					int minimumRoll = ttmMechanic.minimumRoll(passingDistance, passModifiers);
+					int roll = step.getGameState().getDiceRoller().rollSkill();
+					boolean playerCanPass = thrower.getPassing() != 0;
+					state.passResult = evaluatePass(playerCanPass, thrower.getPassingWithModifiers(), roll, ttmMechanic.modifierSum(passingDistance, passModifiers));
+					boolean reRolled = ((step.getReRolledAction() == rerolledAction)
+						&& (step.getReRollSource() != null));
+					boolean successful = state.passResult == PassResult.ACCURATE || state.passResult == PassResult.INACCURATE;
+					step.getResult().addReport(new ReportThrowTeamMateRoll(thrower.getId(), successful, roll, minimumRoll,
+						reRolled, passModifiers.toArray(new PassModifier[0]), passingDistance, state.thrownPlayerId, state.passResult, state.kicked));
+
+					if (state.passResult == PassResult.ACCURATE
+						&& thrower.hasSkillProperty(NamedProperties.canSkipTtmScatterOnSuperbThrow)
+						&& state.usingBullseye == null) {
+						UtilServerDialog.showDialog(step.getGameState(),
+							new DialogSkillUseParameter(thrower.getId(), thrower.getSkillWithProperty(NamedProperties.canSkipTtmScatterOnSuperbThrow),
+								0),	false);
+						step.getResult().setNextAction(StepAction.CONTINUE);
+						return true;
+					}
+
+					if (state.passResult == PassResult.ACCURATE ) {
+						handlePassResult(state.passResult, step);
+					} else {
+						if (step.getReRolledAction() != rerolledAction && playerCanPass) {
+							step.setReRolledAction(rerolledAction);
+							int superbTarget = thrower.getPassingWithModifiers() + ttmMechanic.modifierSum(passingDistance, passModifiers);
+							List<String> messages = buildTtmRerollMessage(thrower, superbTarget, state.passResult);
+
+							if (reRolled || !UtilServerReRoll.askForReRollIfAvailable(step.getGameState(), thrower, rerolledAction,
+									minimumRoll, false, messages)) {
+								handlePassResult(state.passResult, step);
+							}
+						} else {
+							handlePassResult(state.passResult, step);
+						}
+					}
+				}
+
+				return false;
+			}
+
+			private void handlePassResult(PassResult passResult, StepThrowTeamMate step) {
+				step.publishParameter(StepParameter.from(StepParameterKey.PASS_RESULT, passResult));
+				step.getResult().setNextAction(StepAction.NEXT_STEP);
+			}
+
+			private PassResult evaluatePass(boolean playerCanPass, int passValue, int roll, int modifierSum) {
+				if (!playerCanPass) {
+					return PassResult.FUMBLE;
+				}
+				if (passValue <= 0) {
+					return PassResult.FUMBLE;
+				}
+				int resultAfterModifiers = roll - modifierSum;
+				if (roll == 1) {
+					return PassResult.FUMBLE;
+				} else if (roll == 6 || resultAfterModifiers >= passValue) {
+					return PassResult.ACCURATE;
+				} else if (resultAfterModifiers <= 1) {
+					return PassResult.FUMBLE;
+				} else {
+					return PassResult.INACCURATE;
+				}
+			}
+
+			private List<String> buildTtmRerollMessage(Player<?> thrower, int superbTarget, PassResult passResult) {
+				if (passResult != PassResult.INACCURATE) {
+					return null; // fumble uses default reroll dialog text
+				}
+
+				String targetText = superbTarget > 6 ? "a natural 6" : superbTarget + "+";
+				String text = thrower.hasSkillProperty(NamedProperties.canSkipTtmScatterOnSuperbThrow)
+					? "This is a Subpar result. Re-roll needed: " + targetText + " for a Superb result and to trigger Bullseye."
+					: "This is a Subpar result. Re-roll for a chance at a Superb result (" + targetText + ", SPP and easier landing).";
+
+				return Collections.singletonList(text);
+			}
+		});
+	}
+}

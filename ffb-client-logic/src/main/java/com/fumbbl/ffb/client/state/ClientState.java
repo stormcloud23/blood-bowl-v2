@@ -1,0 +1,159 @@
+package com.fumbbl.ffb.client.state;
+
+import com.fumbbl.ffb.ClientStateId;
+import com.fumbbl.ffb.FieldCoordinate;
+import com.fumbbl.ffb.client.ActionKey;
+import com.fumbbl.ffb.client.FantasyFootballClient;
+import com.fumbbl.ffb.client.dialog.DialogProgressBar;
+import com.fumbbl.ffb.client.dialog.IDialogCloseListener;
+import com.fumbbl.ffb.client.state.logic.LogicModule;
+import com.fumbbl.ffb.client.util.UiDispatcher;
+import com.fumbbl.ffb.net.NetCommand;
+
+import java.awt.event.MouseEvent;
+import java.util.concurrent.atomic.AtomicInteger;
+
+public abstract class ClientState<T extends LogicModule, C extends FantasyFootballClient> {
+
+	private final C fClient;
+	protected final T logicModule;
+
+	protected FieldCoordinate fSelectSquareCoordinate;
+	private volatile DialogProgressBar dialogProgress;
+	private final UiDispatcher uiDispatcher = new UiDispatcher();
+
+	public ClientState(C pClient, T logicModule) {
+		fClient = pClient;
+		this.logicModule = logicModule;
+	}
+
+	public final void enterState() {
+		logicModule.setUp();
+		setUp();
+	}
+
+	public final void leaveState() {
+		tearDown();
+		logicModule.teardown();
+	}
+
+	public void setUp() {
+	}
+
+	public void tearDown() {}
+
+	public void reinitializeLocalState() {
+		if (dialogProgress != null) {
+			dialogProgress.showDialog(dialogProgress.getCloseListener());
+		}
+	}
+
+	public final ClientStateId getId() {
+		return logicModule.getId();
+	}
+
+	public C getClient() {
+		return fClient;
+	}
+
+	public void hideSelectSquare() {
+		fSelectSquareCoordinate = null;
+	}
+
+	public void showSelectSquare(FieldCoordinate pCoordinate) {
+		if (pCoordinate != null) {
+			fSelectSquareCoordinate = pCoordinate;
+			drawSelectSquare();
+		}
+	}
+
+	abstract protected void drawSelectSquare();
+
+	protected void prePerform(int menuKey) {
+	}
+
+	protected void postPerform(int menuKey) {
+	}
+
+	public final void endTurn() {
+		logicModule.endTurn();
+		postEndTurn();
+	}
+
+	protected void postEndTurn() {
+	}
+
+	public T getLogicModule() {
+		return logicModule;
+	}
+
+	public void handleCommand(NetCommand pNetCommand) {
+
+	}
+
+	// TODO remove once components and dialogs are moved to UI module
+	public void setClickable(boolean b) {
+	}
+
+	public void mouseMoved(MouseEvent pMouseEvent) {
+	}
+
+	public void mouseDragged(MouseEvent pMouseEvent) {
+	}
+
+	public void mouseClicked(MouseEvent pMouseEvent) {
+	}
+
+	public void mouseEntered(MouseEvent pMouseEvent) {
+	}
+
+	public void mouseExited(MouseEvent pMouseEvent) {
+	}
+
+	public void mousePressed(MouseEvent pMouseEvent) {
+	}
+
+	public void mouseReleased(MouseEvent pMouseEvent) {
+	}
+
+	public boolean actionKeyPressed(ActionKey actionKey) {
+		return false;
+	}
+
+	public boolean isInitDragAllowed(FieldCoordinate pCoordinate) {
+		return true;
+	}
+
+	public boolean isDragAllowed(FieldCoordinate coordinate) {
+		return true;
+	}
+
+	public boolean isDropAllowed(FieldCoordinate dragEndPosition) {
+		return true;
+	}
+
+	public void showIconProgress(IDialogCloseListener listener, int total) {
+		uiDispatcher.runOnUiThreadAndWait(() -> {
+			dialogProgress = new DialogProgressBar(getClient(), "Loading icons", 0, total);
+			dialogProgress.showDialog(listener);
+		});
+	}
+
+	// must not be synchronized, the progress dialog hands its work over to the event dispatch thread and holding a
+	// lock while doing so deadlocks the client when the event dispatch thread is busy
+	public void updateIconProgress(AtomicInteger count, int total) {
+		if (dialogProgress == null) {
+			return;
+		}
+		int loaded = count.incrementAndGet();
+		dialogProgress.updateProgress(loaded, String.format("Loaded icon %d of %d.", loaded, total));
+	}
+
+	public void hideIconProgress() {
+		DialogProgressBar progressBar = dialogProgress;
+		dialogProgress = null;
+		if (progressBar != null) {
+			progressBar.hideDialog();
+		}
+	}
+}

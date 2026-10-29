@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<roster id="ogre.lrb6">
+
+	<name>Ogre</name>
+	<type>Regular</type>
+	<reRollCost>70000</reRollCost>
+	<maxReRolls>8</maxReRolls>
+	<baseIconPath>http://localhost:2224/icons/players/</baseIconPath>
+  
+	<position id="ogre.snotling">
+		<quantity>16</quantity>
+		<name>Snotling</name>
+		<shorthand>S</shorthand>
+		<type>Regular</type>
+		<cost>20000</cost>
+		<movement>5</movement>
+		<strength>1</strength>
+		<agility>3</agility>
+		<passing>5</passing>
+		<armour>5</armour>
+		<portrait>portraits/ogre_snotling.png</portrait>
+		<iconSet size="12">iconsets/ogre_snotling.png</iconSet>
+		<skillList>
+			<skill>Dodge</skill>
+			<skill>Right Stuff</skill>
+			<skill>Side Step</skill>
+			<skill>Stunty</skill>
+			<skill>Titchy</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Agility</normal>
+			<double>General</double>
+			<double>Strength</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="ogre.ogre">
+		<quantity>6</quantity>
+		<name>Ogre</name>
+		<shorthand>O</shorthand>
+		<type>Regular</type>
+		<cost>140000</cost>
+		<movement>5</movement>
+		<strength>5</strength>
+		<agility>2</agility>
+		<passing>5</passing>
+		<armour>9</armour>
+		<portrait>portraits/ogre_ogre.png</portrait>
+		<iconSet size="6">iconsets/ogre_ogre.png</iconSet>
+		<skillList>
+			<skill>bone head</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+		<skillCategoryList>
+			<normal>Strength</normal>
+			<double>Agility</double>
+			<double>General</double>
+			<double>Passing</double>
+		</skillCategoryList>
+	</position>
+
+	<position id="ogre.Dribblesnot">
+		<quantity>1</quantity>
+		<name>Bomber Dribblesnot</name>
+		<shorthand>BD</shorthand>
+		<type>Star</type>
+		<cost>60000</cost>
+		<movement>6</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/BomberDribblesnot.png</portrait>
+		<iconSet size="1">iconsets/BomberDribblesnot.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Accurate</skill>
+			<skill>Bombardier</skill>
+			<skill>Dodge</skill>
+			<skill>Right Stuff</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="ogre.Nobbla">
+		<quantity>1</quantity>
+		<name>Nobbla Blackwart</name>
+		<shorthand>NB</shorthand>
+		<type>Star</type>
+		<cost>130000</cost>
+		<movement>6</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/NobblaBlackwart.png</portrait>
+		<iconSet size="1">iconsets/NobblaBlackwart.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Dodge</skill>
+			<skill>Chainsaw</skill>
+			<skill>Secret Weapon</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="ogre.Scrappa">
+		<quantity>1</quantity>
+		<name>Scrappa Sorehead</name>
+		<shorthand>SS</shorthand>
+		<type>Star</type>
+		<cost>150000</cost>
+		<movement>7</movement>
+		<strength>2</strength>
+		<agility>3</agility>
+		<armour>7</armour>
+		<portrait>portraits/ScrappaSorehead.png</portrait>
+		<iconSet size="1">iconsets/ScrappaSorehead.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Dirty Player</skill>
+			<skill>Dodge</skill>
+			<skill>Leap</skill>
+			<skill>Right Stuff</skill>
+			<skill>Sprint</skill>
+			<skill>Stunty</skill>
+			<skill>Sure Feet</skill>
+			<skill>Very Long Legs</skill>
+		</skillList>
+	</position>
+
+	<position id="ogre.Bigfist">
+		<quantity>1</quantity>
+		<name>Bertha Bigfist</name>
+		<shorthand>BB</shorthand>
+		<type>Star</type>
+		<cost>290000</cost>
+		<movement>6</movement>
+		<strength>5</strength>
+		<agility>2</agility>
+		<armour>9</armour>
+		<portrait></portrait>
+		<iconSet size="1">iconsets/BerthaBigfist.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>bone head</skill>
+			<skill>Break Tackle</skill>
+			<skill>Dodge</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+	<position id="ogre.Farth">
+		<quantity>1</quantity>
+		<name>Brick Far'th</name>
+		<shorthand>BF</shorthand>
+		<type>Star</type>
+		<cost>290000</cost>
+		<movement>5</movement>
+		<strength>5</strength>
+		<agility>2</agility>
+		<armour>9</armour>
+		<portrait>portraits/BrickFarth.png</portrait>
+		<iconSet size="1">iconsets/BrickFarth.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>bone head</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Nerves of Steel</skill>
+			<skill>Strong Arm</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+	<position id="ogre.Grotty">
+		<quantity>1</quantity>
+		<name>Grotty</name>
+		<shorthand>GY</shorthand>
+		<type>Star</type>
+		<cost>290000</cost>
+		<movement>6</movement>
+		<strength>2</strength>
+		<agility>4</agility>
+		<armour>7</armour>
+		<portrait>portraits/Grotty.png</portrait>
+		<iconSet size="1">iconsets/Grotty.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Dodge</skill>
+			<skill>Right Stuff</skill>
+			<skill>Stunty</skill>
+		</skillList>
+	</position>
+
+	<position id="ogre.Morg">
+		<quantity>1</quantity>
+		<name>Morg 'n' Thorg</name>
+		<shorthand>MT</shorthand>
+		<type>Star</type>
+		<cost>430000</cost>
+		<movement>6</movement>
+		<strength>6</strength>
+		<agility>3</agility>
+		<armour>10</armour>
+		<portrait>portraits/MorgNThorg.png</portrait>
+		<iconSet size="1">iconsets/MorgNThorg.png</iconSet>
+		<skillList>
+			<skill>Loner</skill>
+			<skill>Block</skill>
+			<skill>Mighty Blow</skill>
+			<skill>Thick Skull</skill>
+			<skill>Throw Team-Mate</skill>
+		</skillList>
+	</position>
+
+</roster>
