@@ -1,0 +1,273 @@
+package com.fumbbl.ffb.client.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ChangeList {
+
+	public static final ChangeList INSTANCE = new ChangeList();
+	private final List<VersionChangeList> versions = new ArrayList<>();
+
+	public ChangeList() {
+		versions.add(new VersionChangeList("3.4.0")
+			.addFeature("Experimental browser client for local standalone games, with a separate browser development database")
+			.addImprovement("Team Setup: Saving a setup under the name of an existing one now asks for confirmation before overwriting it")
+			.addBugfix("Team Setup: The setup list could still show a deleted setup or miss a just saved one")
+			.addImprovement("Getting Even: Custom keywords of league positionals are supported and no longer all treated as the same \"Unknown\" keyword")
+			.addBugfix("Dump-off: The tackle zone of a blocker who stood up to block or blitz was ignored for the pass")
+			.addImprovement("Lone Fouler: Is also offered when the armour roll breaks armour with a double, or when ending the turn would make a stalling team-mate get hit by a rock")
+			.addBugfix("Safe Pair of Hands: Could be used when knocked down by a player with Strip Ball instead of the ball bouncing")
+			.addBugfix("Prayers to Nuffle: A prayer cost of zero caused an error when assigning additional prayers to the underdog")
+			.addBugfix("Prayers to Nuffle: A prayer cost of zero caused an error when assigning prayers in the 2020 ruleset")
+			.addBugfix("On The Ball: Dodge could not be used to re-roll a failed dodge when moving during a pass")
+			.addBugfix("B&C: If stunned by a pitch invasion no injury was applied")
+			.addBugfix("Wizard: Fireball did not affect prone or stunned players, and Fireball/Zap could not target own-team players in the 2025 ruleset")
+			.addBugfix(
+				"Bombardier: A team-mate avoiding the knock down with Steady Footing could cancel the turnover caused by other team-mates hit by the same bomb")
+			.addBugfix("Joining a running game could leave a second ball icon on the pitch")
+			.addBugfix("Menu bar could show leftover fragments of menu names (e.g. \"elp\" next to the Help menu) until a menu was opened")
+			.addImprovement("Player choice dialogs now grow with the number of listed players (up to 90% of the client height) instead of always showing at most 5 rows")
+			.addBugfix("Tentacles: Being held did not end the player action, allowing the held player to still pass, hand off, foul or block")
+			.addImprovement("Dialogs no longer react to key presses that were made before they popped up, e.g. while typing in the chat. The delay can be configured under Client Settings > Dialog Key Delay")
+			.addImprovement("Active players can now show which action is being performed")
+			.addBugfix("Krump and Smash: Was offered when Varag was blocked and the opposing player knocked themselves down")
+			.addBugfix("Foul Appearance: Was rolled on the next move after being successfully shadowed by a player with Foul Appearance")
+			.addBehaviorChange("Replay: Removed the \"Left Click + Shift\" draw tool click behaviour, as Shift + Left Click opens the marker popup")
+			.addImprovement("Replay: Pressing Escape while drawing a sketch removes that sketch")
+			.addBugfix("Stunty: Still applied a -1 modifier to interceptions for passes from stunty players")
+			.addBugfix("Swarming: A double clicked end turn button during setup could skip the swarming setup")
+			.addBugfix("Diving Tackle: The prompt no longer claims that declaring Diving Tackle forces the dodging or jumping player to use skills like Break Tackle")
+			.addImprovement("Skipping a player choice dialog that allows selecting more than one player now asks for confirmation and reopens the dialog if the skip is not confirmed")
+			.addBugfix("Josef Bugman: Players not chosen for the Dwarfen Wisdom re-setup stayed marked as moved, so they could not be activated by kick-off events like Charge or Quick Snap")
+			.addBugfix("Diving Catch: Now follows NAF recommendation, active team gets first pick to choose catcher with DC (or without if a player is in the target square), then passive team, then default catch rules.")
+			.addBugfix("On The Ball: Players on LoS could not use OtB during kick-off even if they were open")
+			.addImprovement("Move paths sent by the client are sanitized to ensure a client does not send invalid move sequences")
+			.addBugfix("Fan Interaction: Injury rolls of players pushed into the crowd or falling through a trap door applied injury modifiers like Mighty Blow of the player causing the push")
+			.addBugfix("Swarming: A double clicked end turn button during setup could skip the swarming setup")
+			.addBugfix("Chainsaw: Attacker down (skull or both down) when blocking a player with chainsaw did add chainsaw modifier to armour roll on attacker")
+			.addBugfix("If the only available action was forgo activation, a foul action was started instead")
+			.addFeature("Optional dodge modifiers like Break Tackle and Consummate Professional are now offered in a dialog that lets you choose between skill combinations and re-rolls instead of being applied automatically. Skills that give the same bonus as a skill that can be used more often are not offered")
+			.addBugfix("Diving Tackle: The prompt is now always shown, describes the actual effect of the declaration and no longer offers skills the dodging player cannot use")
+			.addBugfix("Dodge re-roll prompts no longer offer a team re-roll when the player has a re-roll skill that is available in every turn")
+			.addImprovement("Move squares now show the roll needed when an adjacent opponent can use Diving Tackle")
+			.addBehaviorChange("A dodge re-roll from a skill is no longer used automatically when failing the dodge would get a rock thrown at a team mate that could still score")
+			.addBehaviorChange("Optional modifiers are now offered when a jump fails, Bounding Leap is no longer used automatically when a modifier could rescue the jump")
+			.addBehaviorChange("Leap, Very Long Legs and Pogo can now be declined on a jump when failing it would skip the stalling roll for a team mate that could still score")
+			.addBugfix("Diving Tackle: The prompt on a jump is now always shown and describes the actual effect of the declaration")
+			.addBehaviorChange("Swift As The Breeze: On a jump the skill is now offered together with the other optional modifiers and re-rolls instead of in a dialog of its own")
+			.addBehaviorChange("Swift As The Breeze: On a dodge the skill is now offered together with the other optional modifiers and re-rolls instead of in a dialog of its own")
+			.addBugfix("Swift As The Breeze: A Diving Tackle declared after the skill was used on a dodge still tripped the dodger")
+			.addBugfix("Client could freeze during startup, for example when the window was moved while a replay was loading")
+			.addImprovement("Replays load noticeably faster, progress dialogs no longer slow down loading")
+      .addFeature("Consummate Professional")
+			.addBehaviorChange("Catch: The re-roll is no longer used automatically when catching a bouncing ball, an inaccurate pass or a scattered bomb, it is offered as a choice instead")
+			.addBehaviorChange("On The Ball: Can now be used when an opposing player uses Dump-off. Team re-rolls are available for these moves, Pro is not. The interrupted action continues afterwards")
+			.addBugfix("Apothecary choices now use only outcomes generated by the server")
+			.addBugfix("Actions limited to once per turn (Blitz, Foul, Pass, Hand-off, Throw/Kick Team-Mate, Bomb, Punt, Secure the Ball) could be declared a second time in the same turn by clients that did not hide the used action")
+		);
+
+		versions.add(new VersionChangeList("3.3.2")
+			.addBugfix("Taunt: Was not available after POW results")
+			.addBugfix("Bombardier: The bomber could be activated again when the bomb was caught or intercepted and thrown by another player")
+		);
+
+		versions.add(new VersionChangeList("3.3.1")
+			.addBugfix("Hatred: Game hung on hovers on players with gained hatred only")
+		);
+
+		versions.add(new VersionChangeList("3.3.0")
+			.addImprovement("Added scoreboard icons for the Cheering Fans offensive assist bonus")
+			.addImprovement("Updated db connector to most current mariadb client")
+			.addBugfix("Master Assassin: Re-rolled Stab armour breaks did not apply the resulting injury")
+			.addBugfix("Selecting Fumblerooskie during a foul action could foul the active player instead")
+			.addFeature("Infamous Staff - Josef Bugman")
+			.addBugfix("Reset button could block hiring star players")
+			.addBugfix("Emoji picker disappeared after switching between spectator and replay mode")
+			.addFeature("Dwarfen Grit (Star Josef Bugman)")
+			.addFeature("Optional client-side captions for spectator-triggered sounds")
+			.addFeature("Added game option to disable underdog treasury spending on inducements")
+			.addBugfix("Taunt was available while distracted")
+			.addBugfix("Projectile Vomit did not end Blitz activation")
+			.addFeature("Add game option to toggle grab vs sidestep on blitz behavior")
+			.addBugfix("FA triggered after Quick Foul")
+			.addBugfix("Using OtB vs G&G pass caused the game to crash if the passer moved on")
+			.addImprovement("Used-player marking now shows a dedicated icon for the player who used the team's blitz action")
+			.addBugfix("Self inflicted injuries never triggered Getting Even")
+			.addBugfix("Star players incorrectly rolled for Getting Even")
+			.addImprovement("Moved active cards into the inducements menu to reduce top-level menu width")
+			.addImprovement("Added chat command to reset used skills for selected players")
+			.addFeature("Added support for I'll Carry You (Stars Grak & Crumbleberry)")
+			.addBugfix(
+				"Special team re-rolls like Leader or Brilliant Coaching that were saved by Team Captain got converted to regular team re-rolls")
+			.addBugfix("Mascot/Loner fail on DT dodge re-roll caused the game to lock up")
+			.addBugfix("A manipulated client could submit an out-of-range pass that stalled the game")
+			.addBugfix("Conceding in the 2025 ruleset did not let the winning coach assign the awarded touchdowns for SPP")
+			.addImprovement(
+				"Buying inducements now prompts before closing if petty cash remains that could still buy an inducement")
+			.addBugfix(
+				"Active team players ending up in the crowd (crowd push, throw team-mate, ball & chain and trap doors) always cause a turnover")
+			.addBugfix(
+				"Gained Hatred no longer counts as a skill advancement for the player level or the post-concession player loss check")
+			.addFeature("Added game option to disable Getting Even")
+			.addBugfix("Leader re-roll was granted when Leader player was fielded only for a subsequent drive of a half")
+			.addBugfix("Jump up was rolled after Foul Appearance")
+			.addBugfix("Foul Appearance fail on a blitz from prone (when target was adjacent) left the blitzing player prone")
+			.addBugfix("Conceding teams did not lose their spp")
+			.addImprovement("Player choice dialogs now display amount of selected and to be selected players")
+			.addBugfix("Plague Ridden also worked for non-block casualties")
+			.addBugfix(
+				"Bombardier: If the original bomber was cassed by an intercepted bomb they were available for AtC at the end of drive and if successful did return to reserves")
+			.addBugfix(
+				"Bombardier: If the original bomber was cassed by an intercepted bomb the tooltip when hovering them in the dugout displayed the opponent team's turn number")
+			.addBugfix("Steady Footing: Could be used by prone/stunned players when hit by bombs etc")
+			.addBugfix("Chainsaw: Kickback always results in a knock down")
+			.addBugfix("Replays with BT vs DT did not load in some cases")
+			.addBugfix("TTM was only available for players with ST5 or more")
+			.addBugfix("The Ballista: Re-rolls were not offered for TTM/KTM/Pass")
+			.addBugfix(
+				"Joining a collaborative replay already in progress did cause the joining client to hang after loading the initial state")
+			.addBugfix("Cheering Fans assist was not granted to defensive team in case of a touchback")
+			.addBugfix("Punt: A ball bouncing out off bounds did not cause a turnover")
+			.addBugfix(
+				"TTM: When double-clicking while picking up a team-mate the player could vanish upon landing/cancelling")
+		);
+
+		versions.add(new VersionChangeList("3.2.3")
+			.addBugfix("Weather Mage effect only lasted until end of drive/opponents next turn")
+			.addBugfix(
+				"On Linux JVMs past 1.8 it was not possible to close the actions menu by clicking the active player again")
+			.addBugfix(
+				"Apply confusion flag if player is prone and fails the respective check (Bone Head, Really Stupid, Animal Savagery)")
+			.addBugfix("Ball & Chain hit by bomb did roll for armour")
+			.addBugfix("Dodgy Snack did not trigger auto marking update")
+			.addBugfix("Multiblock did not generate spp")
+			.addBugfix(
+				"Punt: If direction or distance put the ball out of bounds re-rolling the result did not reset the ball being in bounds")
+			.addBugfix("Blessing of Nuffle: Description text was incorrect")
+			.addBugfix("With JVMs newer than 8, range rulers did not show the required roll anymore")
+			.addBugfix("Gaining additional Hatred results in duplication of existing Hatred skill listings")
+			.addBugfix("Bloodlust: When opting to move instead of fouling directly due to failed Bloodlust the game crashed")
+			.addBugfix("Missing Zoat and Spite keywords caused Hatred/Getting Even to show Unknown")
+		);
+
+		versions.add(new VersionChangeList("3.2.2")
+			.addBugfix("All prayer rolls resulted in Blessing of Nuffle")
+		);
+
+		versions.add(new VersionChangeList("3.2.1")
+			.addBugfix("Disabling timeout button also disabled the turn timer")
+			.addBugfix(
+				"All ruleset: Touchback with only no ball players could result in the ball not being available for the drive")
+			.addBehaviorChange(
+				"All ruleset: In case of a touchback with no players or only no ball players placing the ball in a field does not bounce it anymore")
+			.addBugfix("\"Did not stall\" message was displayed even if there was no potential stalling")
+		);
+
+		versions.add(new VersionChangeList("3.2.0")
+			.addBugfix("Banned coach does not affect Brilliant Coaching roll")
+			.addBugfix("Prevent staff and technical player types to be eligible to be raised")
+			.addBugfix("Safe Pair of Hands did prevent turnovers")
+			.addBugfix("Leap was not applied when combined with other positive modifiers like Very Long Legs and the " +
+				"resulting modifier was lower than 2")
+			.addBugfix("Player with Fend and Taunt was not able to use Taunt")
+			.addBugfix("Fumbled KTM did not apply stunty to injury roll")
+			.addBugfix("Give and Go did not trigger when a bomb was intercepted/caught")
+			.addFeature("Wisdom of the White Dwarf (Star Grombrindal)")
+			.addImprovement("Set antialiasing for non-menu text components (mainly affecting Linux environments")
+			.addBugfix("Player Markings for 2020 skills caused false positives in 2025 games")
+			.addBugfix("Blessing of Nuffle was not applied randomly (and still used the old name)")
+			.addBugfix("Thinking Man's Troll could not be used on regeneration re-rolls")
+			.addBugfix("Kaboom! did not work on bouncing bomb")
+			.addBugfix("Fumblerooski was not reverted when player was held in place by tentacles")
+			.addBugfix("Arm Bar against non-dodge players caused a second re-roll option in case of a failed dodge")
+			.addFeature("Added game option to turn off timeouts")
+			.addBugfix("Timeout did not work for first turn of a drive")
+		);
+
+		versions.add(new VersionChangeList("3.1.2")
+			.addBugfix("B&C could perform Multi Block if skill was present")
+			.addImprovement("Reword B&C knock out message")
+			.addBugfix("B&C self cas did not generate spp")
+			.addBugfix("For underdog teams with less than 50k treasury the report used treasury was reported incorrectly")
+			.addBugfix("Foul Appearance triggered for the first move after blitzing a player with that skill")
+			.addBugfix("Monstrous Mouth: On both downs chomp states were not always removed properly")
+			.addBugfix("Leader re-roll was not restored if player returned to pitch after KO or surf")
+			.addBugfix("Using Safe Pair Of Hands with Wrestle on ball carrier did not prevent turnover")
+			.addBehaviorChange("Fallback checkbox for team re-roll on mascot use is now pre-selected")
+			.addBugfix("Diving Catch did not trigger for kick-offs")
+			.addImprovement(
+				"Message about preventing Strip Ball (Stand Firm, Rooted, Chomped) is only shown if player is actually carrying the ball")
+			.addBugfix("Lone Fouler did not work for Chainsaw fouls")
+			.addBugfix("TTM landing on the ball did allow a pick up")
+			.addBugfix("It was possible to move players on the pitch during mvp selection")
+			.addBugfix("Brilliant coaching message reported a tie when rolls were equal but ignored modifiers")
+			.addImprovement("Technical: Game results are now also loaded from backups if game is not in cache anymore")
+			.addBugfix("Eye Gouge: In addition to not assisting, gouged players did also not cancel opposing assist")
+			.addBugfix("Steady Footing was triggered for prone/stunned players being hit by Ball&Chain")
+			.addBugfix("Knocking down team-mates on TTM/KTM did not cause turnovers")
+			.addBugfix("Chomp was not available on blitz during Charge!")
+			.addBugfix("Target selection was not always removed after a blitz")
+			.addBugfix("When using swoop it is now possible to re-roll direction and distance")
+			.addBugfix("Bomb knock down team-mates did not cause a turnover")
+			.addBugfix("Interception rolls where not modified per tacklezone but only by one for being marked")
+			.addBugfix("Prayers were not added to inducement count")
+			.addBugfix(
+				"When a Steady Footing player blitzed the ball carrier with a both down (both no block) and got saved by Steady Footing the ball did not bounce")
+			.addBugfix("Interception SPP were not awarded")
+		);
+
+		versions.add(new VersionChangeList("3.1.1")
+			.addBugfix("Reloading during kick off sequence was broken")
+			.addBugfix("Steady Footing after being pushed on ball did not bounce the ball")
+			.addBugfix("Hypnotic Gaze triggers Foul Appearance")
+			.addBugfix("Black Ink and Zoat Gaze are only available if non-distracted players are in range")
+			.addBugfix("Punt was not available when rushes were exhausted")
+			.addBugfix("High Kick with no open players did not skip sequence")
+			.addImprovement("Skip Pick Me Up in last turn of half")
+			.addBugfix(
+				"When Mascot re-roll was available without a team re-roll regular re-roll dialog did not react to mascot button and block dialog did not offer mascot")
+			.addBugfix("Sprint was not considered when calculating blitz range")
+		);
+
+		versions.add(new VersionChangeList("3.1.0")
+			.addBugfix("Stalling: No stalling did not grant cash bonus")
+			.addImprovement("Stalling: On turn 7+ do not roll for stalling")
+			.addBugfix("Do not offer Forgo for prone players")
+			.addBugfix("Jump: Declining re-roll granted a free re-roll")
+			.addBugfix("Hypnotic Gaze: rushing twice would end activation before selecting the target")
+			.addBugfix("Brilliant Coaching: Tied result did give no re-roll to either team")
+			.addImprovement("iron Man: Only players with AV 10+ or less are eligible")
+			.addBugfix("Under Scrutiny: Only triggers for av breaks")
+			.addBugfix("Strip Ball: no longer works against Stand Firm/Rooted players")
+			.addBugfix("Master Chef was rolled twice also stealing Leader re-rolls")
+			.addBugfix("Selected kick-off results for overtime did not work")
+			.addBugfix(
+				"Steady Footing: Attacker blocks defender with both down, defender uses Steady Footing Successfully while attacker fell down, did not cause a turnover")
+			.addImprovement("TTM and KTM: reroll choice for Subpar results")
+			.addBugfix("Solid Defence: During player selection it was able to move players around")
+			.addBugfix("Permanent injuries were not removed by regeneration")
+			.addBugfix("Charge: During kickoff blitz, Dodge and Rush skill re-rolls were not available")
+			.addBugfix(
+				"Hypnotic Gaze + Bloodlust: prone players now can move/feed after failed Bloodlust instead of auto-gazing and ending activation")
+			.addBugfix("Fixed wording for \"Under Scrutiny\"")
+			.addImprovement("Add strip ball cancel message")
+			.addBugfix("Chomped state was not removed if chomper blocked chompee and rolled a skull")
+			.addFeature("Implement concession rules")
+			.addBugfix("Dauntless has to be handled before horns")
+			.addBugfix("Support multiple cheering fans assist per team")
+			.addBugfix("Ensure only players in reserves can be selected for prayers")
+			.addFeature("Support icon set index for player icons")
+		);
+
+		versions.add(new VersionChangeList("3.0.0")
+			.setDescription("First version of 2025 rules, a.k.a. 3rd Season - beware of bugs"));
+	}
+
+	public List<VersionChangeList> getVersions() {
+		return versions;
+	}
+
+	public String fingerPrint() {
+		return String.valueOf(versions.get(0).hashCode());
+	}
+}

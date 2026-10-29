@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FFB Browser — local prototype</title><link rel="stylesheet" href="style.css"></head>
+<body><header><div><span class="eyebrow">FANTASY FOOTBALL · BROWSER PROTOTYPE 0.1</span><h1>From the dugout</h1></div><span id="connection" role="status">Disconnected</span></header>
+<main><section class="toolbar"><label>Local match name <input id="match" value="browser-test"></label><button id="connect">Connect both coaches</button><label>Coach view <select id="view"><option value="0">Kalimar · home</option><option value="1">BattleLore · away</option></select></label></section>
+<p class="notice">Local experiment using the FFB Java rules engine. Connects two demo coaches for hotseat testing. Match controls are incomplete; this is the first browser connection milestone.</p>
+<div class="layout"><section><div class="score"><h2 id="teams">Waiting for the server</h2><span id="phase">No match loaded</span></div><div class="pitch-scroll"><div id="pitch" aria-label="Blood Bowl pitch"></div></div><p id="hint">Start browser/start.ps1, then connect both coaches.</p>
+<div id="controls" class="controls"></div></section><aside><h2>Roster</h2><p>Select a player, then a pitch square.</p><div id="roster"></div><h2>Server prompt</h2><pre id="prompt">No prompt</pre></aside></div>
+<details><summary>Connection log and protocol inspector</summary><pre id="log"></pre><label>Send a JSON command as the selected coach<textarea id="command" rows="3">{"netCommandId":"clientPing","timestamp":1}</textarea></label><button id="send">Send command</button></details>
+</main><footer>Powered by the MIT-licensed FFB engine. Experimental local client.</footer><script type="module" src="app.mjs"></script></body></html>
